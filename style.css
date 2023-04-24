@@ -1,0 +1,21 @@
+.container{
+    width: 85%;
+    background: #b4d1b8;
+    margin: auto;
+  }
+
+  .left-side{
+    width: 30%;
+    background: #6d40ab;
+    float: left;
+  }
+
+  .right-side{
+    width: 70%;
+    background: #7e5836;
+    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  }
