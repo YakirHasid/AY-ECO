@@ -1,15 +1,18 @@
 body {
     background: #c8e8e9;
+    align-items: center;
+    justify-content: center;
 }
 
-.container{
+.container1{
     width: 85%;
     background: #fff;
     border-radius: 6px;
     padding: 20px 60px 30px 40px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
   }
-  .container .content{
+  .container1 .content{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,4 +21,13 @@ body {
 
   .content img{
     margin: auto;
+    display: inline-block;
+  }
+
+  .content div{
+    margin: auto;
+  }
+
+  .col-4 {
+    text-align: center;
   }
