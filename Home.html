@@ -20,6 +20,13 @@
         function init() {
             topnavLoader("Home");
         }
+
+        function submitRegisterNewsletter() {
+            let emailField = document.getElementById("TextEmailNewsletter");
+            let userEmail = emailField.value;
+
+            alert("Successfully registered the email " + userEmail + " to the newsletter!");
+        }
     </script>
     
     <body>
@@ -38,17 +45,21 @@
                 
                 <div class="row">
                     <div class="col-12">
-                        <h3>
+                        <p>
                             Do you want to take action in the climate crysis?
-                        </h3>
+                        </p>
 
-                        <h3>
+                        <p>
                             Worried about Earth?
-                        </h3>
+                        </p>
 
-                        <h3>
-                            Interested wit staying in touch with all the HOT news
-                        </h3>
+                        <p>
+                            Interested with staying in touch with all the HOT news?
+                        </p>
+
+                        <p>
+                            Want to become a part of the community?
+                        </p>
                     </div>
                 </div>
 
@@ -71,20 +82,21 @@
 
                 <div class="row">
                     <div class="col-12">
-                        Here at AY-ECO, you can find an answer to all your questions.
+                       <h3><b>Here at AY-ECO, you can find an answer to all your questions.</b></h3>
                     </div>
                 </div>
 
 
                 <div class="row">                    
                     <div class="col-12">
-                        We are here for you, Join us! <br>                    
+                        <h3><b>We are here for you, Join us! </b></h3><br>                    
                     </div>
                 </div>
 
                 <div class="row">                    
                     <div class="col-12">
-                        <input type="text" placeholder="Enter your email for the newsletter">
+                        <input id="TextEmailNewsletter" type="text" placeholder="Enter your email for the newsletter" size="40">
+                        <button id="SubmitEmailNewsletter" value="Submit" onclick="submitRegisterNewsletter()">Submit</button>
                     </div>
                 </div>
             </div>

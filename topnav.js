@@ -7,7 +7,7 @@ let ABOUT_NAME = "About"
 // that each page will be added to the topnav
 // with inner text of the web page itself
 // and link to the website itself
-let pageNameArr = ["Home", "News", "Contact", "About"]
+let pageNameArr = ["Home", "News", "LifeStyle", "Events", "Store", "Community Feed"]
 
 function topnavLoader(curPage) {
 
@@ -37,9 +37,7 @@ function topnavLoader(curPage) {
     // add topnav to body
     document.body.appendChild(topnav);
 
-    let h1 = document.createElement("h1");
-    h1.innerText = "Hello this is " + curPage;
-    document.body.appendChild(h1);
+ 
 
  
 }

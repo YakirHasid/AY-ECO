@@ -1,5 +1,8 @@
 body {
-    background: #c8e8e9;
+    background-image: url("backgroundimage.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
     align-items: center;
     justify-content: center;
 }
@@ -30,4 +33,21 @@ body {
 
   .col-4 {
     text-align: center;
+  }
+
+  .col-12 {
+    text-align: center;
+  }
+
+  .row{
+    text-align: center;
+    padding-bottom: 50px;
+  }
+
+  .col-4 h3{
+    font-weight: bold;
+  }
+
+  .container1 {
+    margin-top: 50px;
   }
