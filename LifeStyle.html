@@ -1,6 +1,19 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
         <link rel="stylesheet" href="topnav.css">
+
+        <link rel="stylesheet" href="LifeStyle.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+
 <style>
     .container{
             width: 85%;
@@ -27,14 +40,64 @@
     justify-content: center;
 }
 </style>
-    
+      
     </head>
 
     <script src="topnav.js"></script>
     
     <script>
         function init() {
-            topnavLoader("LifeStyle");
+            topnavLoader("LifeStyle");            
+        }
+    </script>
+
+    <script>
+        // tips are from https://www.earthday.org/7-tips-to-recycle-better/
+        stickyNotes = [
+                        new StickyNote("No bags. Like really, no bags.", "Grocery bags dissolve into potentially harmful microplastics and, in the case of ingestion or entanglement, hurt and kill animals."),
+                        new StickyNote("Know your plastics", "Not all plastics are treated equally. Rigid plastics are recyclable, labeled by resin codes 1 through 7. Generally, the higher the number, the less recyclable it is."),
+                        new StickyNote("Demand change", "Of course, you can change your individual behavior: Clean containers better, only recycle what’s recyclable and most importantly, reduce your overall use."),
+                        new StickyNote("Teach yourself", "There’s a bunch of stuff we accumulate over our lives — batteries, electronics, paint cans, toys, clothing, wood — and they, unfortunately, all have separate drop off centers or special instructions for recycling."),
+                        new StickyNote("Make sure it’s clean, empty and dry", "Food waste contaminates whole loads of recyclable material, rendering them useless and fast-tracking them to landfills. In the U.S., food waste contaminates 25 percent of our recycling loads."),
+                        new StickyNote("Combined materials are trash", "Recycling only works when like materials are together. Unfortunately, items like plastic-coated coffee cups can’t ever be separated, which means they’re trash.")
+                      ];
+
+        function StickyNote(title, text) {
+            this.title = title;
+            this.text = text;
+        }
+
+
+
+        function loadStickies() {
+            let container = document.getElementById("stickyNotesContainer");
+            let ul = document.createElement("ul");
+            let counter = 1;
+
+            stickyNotes.forEach(sticky => {
+
+                let li = document.createElement("li");
+
+                let a = document.createElement("a");
+                a.href = "#";
+
+                let h2 = document.createElement("h2");
+                h2.innerText = "Tip #" + counter + ": " + sticky.title;     
+                counter++;           
+
+                let p = document.createElement("p");
+                p.innerText = sticky.text;
+
+                a.appendChild(h2);
+                a.appendChild(p);
+
+                li.appendChild(a);                
+
+                ul.appendChild(li);
+
+            });
+
+            container.appendChild(ul);
         }
 
         function videoInit(){
@@ -61,25 +124,30 @@
         }
     </script>
     
-    <body >
-
+    <body>
         <script>
-            init();
+            init();                
         </script>
 
-<div class="container">
-    <p style="text-align: center; font-size: 30px; font-weight: bold;  font-family: Arial, sans-serif;
-    text-align: center; ">Relevant videos that you can learn from:</p>
-    <div id="videoDiv">
-      
-    </div>  
-</div>
+        <div id="stickyNotesContainer">
+
+        </div>
+
+        <script>
+            loadStickies();
+        </script>
+  
+        <div class="container">
+          <p style="text-align: center; font-size: 30px; font-weight: bold;  font-family: Arial, sans-serif;
+          text-align: center; ">Relevant videos that you can learn from:</p>
+          <div id="videoDiv">
+
+          </div>  
+        </div>
             
 
         <script>
             videoInit();
         </script>
-
-
     </body>
 </html>
