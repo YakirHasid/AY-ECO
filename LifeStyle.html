@@ -21,16 +21,38 @@
             topnavLoader("LifeStyle");
         }
     </script>
+
+    <script>
+        stickyNotes = [
+                        new StickyNote("No bags. ", "Like really, no bags."),
+                        new StickyNote("Know your plastics", "Not all plastics are treated equally"),
+                      ];
+
+        function StickyNote(title, text) {
+            this.title = title;
+            this.text = text;
+        }
+
+
+
+        function loadStickies() {
+            let container = document.getElementById("stickyNotesContainer");
+
+        }
+    </script>
     
     <body>
         <script>
             init();    
         </script>
         <ul>
+            <div id="stickyNotesContainer">
+
+            </div>
             <li>
               <a href="#">
                 <h2>Title #1</h2>
-                <p>Text Content #1</p>
+                <p>Text Content #1 dwqd</p>
               </a>
             </li>
             <li>
