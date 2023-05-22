@@ -1,6 +1,33 @@
 <html>
     <head>
         <link rel="stylesheet" href="topnav.css">
+<style>
+    .container{
+            width: 85%;
+            background: #c4e0a7;
+            border-radius: 6px;
+            padding: 20px 60px 30px 40px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+            align-items: center;
+        }
+
+    #videoDiv{
+        padding: 20px 60px 30px 40px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    body {
+    background-size: auto;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+    
     </head>
 
     <script src="topnav.js"></script>
@@ -9,8 +36,50 @@
         function init() {
             topnavLoader("LifeStyle");
         }
+
+        function videoInit(){
+            
+            //set the selectet video
+            let videourlarr = ["https://www.youtube.com/embed/K9ojpJBSTw8","https://www.youtube.com/embed/RyvBhC7MT84","https://www.youtube.com/embed/pF72px2R3Hg","https://www.youtube.com/embed/eDFrlV106iM"]
+            let videonum = Math.floor(Math.random()*videourlarr.length);
+            console.log(videonum);
+            let videosrc = videourlarr[videonum];
+            console.log(videosrc);
+
+            //create video elemnt to append in videoDiv
+            video = document.createElement("iframe");
+            //set videro attribute
+            video.setAttribute("src",videosrc);
+            video.setAttribute("controlers","true");
+            video.setAttribute("width","750");
+            video.setAttribute("height","500");
+            video.setAttribute("frameborder","0");
+  
+
+            var videoDiv = document.getElementById("videoDiv");
+            videoDiv.appendChild(video);
+        }
     </script>
     
-    <body onload="init()">
+    <body >
+
+        <script>
+            init();
+        </script>
+
+<div class="container">
+    <p style="text-align: center; font-size: 30px; font-weight: bold;  font-family: Arial, sans-serif;
+    text-align: center; ">Relevant videos that you can learn from:</p>
+    <div id="videoDiv">
+      
+    </div>  
+</div>
+            
+
+        <script>
+            videoInit();
+        </script>
+
+
     </body>
 </html>
