@@ -32,7 +32,25 @@ function topnavLoader(curPage) {
 
         //add element to topnav
         topnav.appendChild(x);
-    }
+    }   
+
+    //add register linker
+    let loginLinker = document.createElement("a");
+
+    loginLinker.classList.add("aRight");
+    loginLinker.innerText = "Login";
+    loginLinker.setAttribute("href", "#");    
+
+    //add register linker
+    let registerLinker = document.createElement("a");
+
+    registerLinker.classList.add("aRight");
+    registerLinker.classList.add("start-btn");
+    registerLinker.innerText = "Register";
+    registerLinker.setAttribute("href", "#");
+
+    topnav.appendChild(registerLinker);
+    topnav.appendChild(loginLinker);
 
     // add topnav to body
     document.body.appendChild(topnav);
