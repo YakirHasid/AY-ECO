@@ -1,9 +1,199 @@
 <html>
     <head>
         <link rel="stylesheet" href="topnav.css">
+
+
+        <style>
+            .switching-text {
+              display: flex;
+              height: 500px; /* Fixed height for the divs */
+              align-items: center; /* Center the text vertically */
+              justify-content: center;
+              text-align: center;
+              font-size: 100px;
+              font-weight: bold;
+              color: aliceblue;
+              font-family: Verdana;
+
+              position: relative; /* Ensure the video fills the entire div */
+            }
+
+            .switching-text iframe {
+                position: absolute; /* Make the video cover the entire div */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1; /* Set the video to a lower z-index */
+            }
+        
+
+            .switching-text span {
+                position: relative;
+                z-index: 1; /* Set the text to a higher z-index */
+            }
+
+
+            .switching-text video {
+                position: absolute; /* Make the video cover the entire div */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1; /* Set the video to a lower z-index */
+            }
+
+
+
+
+
+            
+            .div-container {
+              display: flex;
+              justify-content: space-around;
+              margin-top: 50px;
+             
+            }
+
+   
+
+
+             .event {
+              width: 380px; /* Fixed width for the divs */
+              height: 390px; /* Fixed height for the divs */
+              padding: 20px;
+              
+              border-radius: 10px; /* round edges */
+
+              background-color: rgb(218, 240, 212);
+
+              text-align: center;/* text style in the div */
+              font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+              z-index: 1;
+
+              position: relative;
+            }
+
+    
+            .more-details {
+                display: none;
+                background-color: rgb(218, 240, 212);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 380px; /* Fixed width for the divs */
+                height: 290px; /* Fixed height for the divs */
+                padding: 20px;
+                z-index: 2;
+            }
+
+
+            .span1{
+                font-size: 40px;
+                font-weight: bold;
+            }
+
+            .span2{
+                font-size: 35px;
+            }
+
+            .span3{
+                font-size: 30px;
+            }
+
+            .event button{
+                padding: 20px;
+                text-align: center;
+                font-size: 15px;
+                font-family: Verdana;
+
+               
+                background-color: rgb(74, 96, 75);
+                color: white;
+                border:0px; 
+                border-radius: 10px; /* round edges */
+
+
+            }
+
+            .countdown {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            color: #333;
+            }
+        
+
+            .countdown .countdown-block {
+                display: inline-block;
+                margin: 0 10px;
+                padding: 10px;
+                background-color: #f5f5f5;
+                border-radius: 5px;
+            }
+
+            .countdown .countdown-block .countdown-value {
+                font-size: 48px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .countdown .countdown-block .countdown-label {
+                font-size: 14px;
+                color: #666;
+            }
+
+        </style>
+
+
     </head>
 
     <script src="topnav.js"></script>
+    <script>
+        // Function to switch the text
+        function switchText() {
+          var textElement = document.getElementById('switching-text');
+          var currentText = textElement.innerHTML;
+          var newText;
+          
+          if (currentText ==='TAKE<br>ACTION<br>' ) {
+            newText = 'SAVE<br>THE PLENET';
+          } else {
+            newText ='TAKE<br>ACTION<br>' ;
+          }
+          
+          textElement.innerHTML = newText;
+        }
+
+
+
+        function controlbutton(button) {
+         var eventDiv = button.parentNode;
+         var moreDetailsDiv = eventDiv.querySelector('.more-details');
+        
+        if (button.innerHTML==="Show Details")
+        {
+            button.innerHTML="return";
+            moreDetailsDiv.style.display = "block";
+         }
+        else{
+            button.innerHTML="Show Details";
+            moreDetailsDiv.style.display = "none"; 
+            }
+        }
+
+      
+  
+  
+ 
+
+        
+
+      </script>
     
     <script>
         function init() {
@@ -11,6 +201,124 @@
         }
     </script>
     
-    <body onload="init()">
+    <body>
+        <script>
+        init()
+         </script>
+
+    <div class="switching-text" >
+
+        <span id="switching-text">TAKE<br>ACTION<br></span>
+
+           
+        <video src="pexels-michal-marek-1409899-3840x2160-25fps.mp4" autoplay loop muted>
+            Your browser does not support the video tag.
+        </video>
+     
+ 
+    </div>
+    
+    <div class="div-container">
+        <div class="event">
+            <span class="span1">Expert lecture:</span><br>
+            <span class="span2">Why and how to recycle</span><br><br>
+            <span class="span3">29.6.2023 ,18:00,   ruppin center</span>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <button id="button-1", onclick="controlbutton(this)">Show Details</button>
+
+                <div class="more-details">
+                    Come hear a fascinating lecture!<br>
+                    The expert: Yakir Hasid<br><br>
+                    Various recycling innovations. Why we must increase our operations and how to do it<br>
+                    Waiting to see you there.<br>
+                </div>
+        </div>
+        
+        <div class="event">
+                <span class="span1">Beach cleaning:</span><br>
+                <span class="span2">Beit Yanai beach</span><br><br>
+                <span class="span3">1.7.2023</span>
+                
+                <div class="countdown" id="countdown">
+                    <div class="countdown-block">
+                        <div class="countdown-value" id="countdown-days">--</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-block">
+                        <div class="countdown-value" id="countdown-hours">--</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-block">
+                        <div class="countdown-value" id="countdown-minutes">--</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <br><br><br>
+                
+                
+               </div>
+
+               <button id="button-2", onclick="controlbutton(this)">Show Details</button>
+
+                <div class="more-details">
+                    Imagine... a perfect summer day, you decided to go to the sea and enjoy the cold water, the pleasant sun and the fun beach.<br><br>
+                    But everything is so dirty and disgusting. From a great day this day turned into a depressing and annoying day.<br>
+                    You remember all the poor sea animals and the polluted water.<br><br>
+                    This is not acceptable to you!<br><br>
+                    Take action and come clean the beach with us. A small step makes a big difference!
+                </div>
+        </div>
+        <div class="event">
+           
+            <span class="span1"> Sustainability and community conference</span><br><br><br>
+            <span class="span2">More details will come soon... </span><br><br>
+          
+
+
+
+        </div>
+        </div>
+    </div>
+      
+      
+
+    <script>
+        // Switch the text every 3 seconds
+        setInterval(switchText, 3000);
+
+        // Set the target date for the countdown (June 30, 2023 at 00:00:00 UTC)
+        var countdownDate = new Date('2023-07-01T00:00:00Z').getTime();
+
+        // Update the countdown clock every second
+        var countdownInterval = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          
+
+            document.getElementById('countdown-days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('countdown-hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('countdown-minutes').innerHTML = minutes.toString().padStart(2, '0');
+
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = "The event has started!";
+            }
+        }, 1000);
+    </script>
+
     </body>
 </html>
+
+
+
+
