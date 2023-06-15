@@ -18,7 +18,7 @@
               position: relative; /* Ensure the video fills the entire div */
             }
 
-            .switching-text video {
+            .switching-text iframe {
                 position: absolute; /* Make the video cover the entire div */
                 top: 0;
                 left: 0;
@@ -33,6 +33,22 @@
                 position: relative;
                 z-index: 1; /* Set the text to a higher z-index */
             }
+
+
+            .switching-text video {
+                position: absolute; /* Make the video cover the entire div */
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -1; /* Set the video to a lower z-index */
+            }
+
+
+
+
+
             
             .div-container {
               display: flex;
@@ -194,9 +210,11 @@
 
         <span id="switching-text">TAKE<br>ACTION<br></span>
 
+           
         <video src="pexels-michal-marek-1409899-3840x2160-25fps.mp4" autoplay loop muted>
             Your browser does not support the video tag.
         </video>
+     
  
     </div>
     
