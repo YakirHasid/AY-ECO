@@ -10,7 +10,7 @@
         die("Connection failed: ". $conn->connect_error);
     }
 
-    $sql = "SELECT ImageURL,Name,Description,Price FROM Product";
+    $sql = "SELECT ID,ImageURL,Name,Description,Price FROM Product";
 
     $answer = $conn->query($sql);               
 
@@ -21,7 +21,7 @@
         while($row = $answer->fetch_assoc()) {
             array_push($result, $row);           
         }        
-        
+
         echo json_encode($result);          
     }
     else {
