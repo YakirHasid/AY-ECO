@@ -3,3 +3,16 @@
     height: 100vh !important;
     }
 }
+
+div.card img {
+    height: 200px;
+    width: auto;
+}
+
+div.card p.Description {
+    height: 130px;
+}
+
+div.card {
+    margin-top: 50px;
+}
