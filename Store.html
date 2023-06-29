@@ -32,29 +32,25 @@
            this.price = price;
         }
 
-        function initProducts() {
-            products = [
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),      
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),                                                                                          
-            ];
+        function loadProducts() {
+            // Send the form data to the PHP script using AJAX
+            $.ajax({
+                type: 'GET',
+                url: 'loadProductsScript.php',
+                //data: formData,
+                success: function(response) {
+                    // Handle the response from the server
+                    products = JSON.parse(response);             
+                    initProducts(products);             
+                    // You can show a success message or perform other actions here
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });                   
+        }
+
+        function initProducts(products) {                                             
 
             let prodsCont = document.getElementById("productsContainer");
             let counter = 0;
@@ -76,19 +72,20 @@
                 curCard.style = "width: 18rem;";
 
                 let curImg = document.createElement("img");
-                curImg.setAttribute("src", product.img_url);
+                curImg.setAttribute("src", product.ImageURL);
 
                 let curCardBody = document.createElement("div");
                 curCardBody.classList.add("card-body");
 
                 let curCardTitle = document.createElement("h5");
-                curCardTitle.innerText = product.title;
+                curCardTitle.innerText = product.Name;
 
                 let curCardDesc = document.createElement("p");
-                curCardDesc.innerText = product.description;
+                curCardDesc.innerText = product.Description;
+                curCardDesc.classList.add("Description");
 
                 let curCardPrice = document.createElement("p");
-                curCardPrice.innerText = product.price;
+                curCardPrice.innerText = "" + product.Price + " NIS";
 
                 let curCardBtn = document.createElement("a");
                 curCardBtn.classList.add("btn");
@@ -127,8 +124,9 @@
     </script>
     
     <body>
-        <script>
-            init();
+
+        <script>            
+            init();                        
         </script>
         <!--
         <div class="container">
@@ -189,7 +187,7 @@
         </div>
 
         <script>
-            initProducts();
+            loadProducts();
         </script>
     </body>
 </html>
