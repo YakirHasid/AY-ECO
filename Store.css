@@ -26,3 +26,13 @@ div.card {
 #storeContainer {
     position: relative;
 }
+
+#myCartDiv {
+    position:absolute;
+    right: 100px;
+}
+
+#myCartItems {
+    overflow-y: scroll; 
+    height:400px;
+}
