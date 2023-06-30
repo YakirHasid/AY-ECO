@@ -147,6 +147,16 @@
             let myCartHeader = document.createElement("h1");
             let myCartItems = document.createElement("div");
 
+            let myCartFooter = document.createElement("div");
+            myCartFooter.setAttribute("id", "myCartFooter");            
+
+            let myCartCheckoutBtn = document.createElement("a");
+            myCartCheckoutBtn.classList.add("btn");
+            myCartCheckoutBtn.classList.add("btn-primary");
+            myCartCheckoutBtn.innerText = "Checkout";
+
+            myCartFooter.appendChild(myCartCheckoutBtn);
+
             let myCartDiv = document.createElement("div");
             myCartDiv.setAttribute("id", "myCartDiv");            
 
@@ -169,6 +179,7 @@
 
             myCartDiv.appendChild(myCartHeader);
             myCartDiv.appendChild(myCartItems);
+            myCartDiv.appendChild(myCartFooter);
 
             myCartContainer.appendChild(myCartDiv);
         }
