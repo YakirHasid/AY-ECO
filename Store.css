@@ -16,3 +16,9 @@ div.card p.Description {
 div.card {
     margin-top: 50px;
 }
+
+.MyCartContainer {
+    position: sticky;
+    float:right;
+    z-index: 1;
+}
