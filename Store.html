@@ -111,6 +111,13 @@
                 curCardBtn.classList.add("btn");
                 curCardBtn.classList.add("btn-primary");
                 curCardBtn.innerText = "Add To Cart";
+                curCardBtn.setAttribute("value", product.ID);
+                curCardBtn.addEventListener('click', function() {
+                    console.log(this);
+                    console.log(this.getAttribute("value"));
+
+                    myCartContainer.appendChild("")                    
+                });
 
                 curCardBody.appendChild(curCardTitle);
                 curCardBody.appendChild(curCardDesc);
