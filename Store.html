@@ -127,6 +127,11 @@
                 counter++;
 
                 if(counter%PROD_IN_ROW == 0) {
+                    let curColPad = document.createElement("div");
+                    curColPad.classList.add("col-3");
+
+                    curRow.appendChild(curColPad);
+
                     prodsCont.appendChild(curRow);
                     curRow = document.createElement("div");
                     curRow.classList.add("row"); 
@@ -201,12 +206,9 @@
             
         </div> 
         -->
-
-        <div class="container" id="productsContainer">
-
-        </div>
-        <div class="container" id="myCartContainer">
-
+        <div id="storeContainer">
+            <div class="container" id="myCartContainer"></div>
+            <div class="container" id="productsContainer"></div>            
         </div>
 
         <script>
