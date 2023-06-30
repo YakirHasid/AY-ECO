@@ -36,3 +36,8 @@ div.card {
     overflow-y: scroll; 
     height:400px;
 }
+
+#myCartFooter{
+    position:relative;
+    top:400px;
+}
