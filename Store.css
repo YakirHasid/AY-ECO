@@ -19,6 +19,10 @@ div.card {
 
 .MyCartContainer {
     position: sticky;
-    float:right;
+    top: 0px;
     z-index: 1;
+}
+
+#storeContainer {
+    position: relative;
 }
