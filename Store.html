@@ -55,10 +55,30 @@
             let prodsCont = document.getElementById("productsContainer");
             let counter = 0;
 
+            let myCartContainer = document.getElementById("myCartContainer")
+            let myCartRow = document.createElement("div");
+            let myCartColPad = document.createElement("div");
+            let myCartColMain = document.createElement("div");
+            let myCartHeader = document.createElement("h1");
+            myCartHeader.innerText = "My Cart:";
+
+            
+            myCartContainer.appendChild(myCartRow)
+            myCartColMain.appendChild(myCartHeader);
+            myCartRow.appendChild(myCartColPad);
+            myCartRow.appendChild(myCartColMain);
+
+            myCartContainer.classList.add("container");
+            myCartRow.classList.add("row"); 
+            myCartColPad.classList.add("col-9"); 
+            myCartColMain.classList.add("col-3"); 
+
+            myCartContainer.classList.add("MyCartContainer");
+
             let curRow = document.createElement("div");
             curRow.classList.add("row");                       
 
-            const PROD_IN_ROW = 4;
+            const PROD_IN_ROW = 3;
             
             products.forEach(product => {    
                 
@@ -183,6 +203,9 @@
         -->
 
         <div class="container" id="productsContainer">
+
+        </div>
+        <div class="container" id="myCartContainer">
 
         </div>
 
