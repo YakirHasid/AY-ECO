@@ -1,36 +1,36 @@
 
-function loadRegisterOverlay() {
+function loadLoginOverlay() {
     // main container
     let divContainer = document.createElement("div");
-    divContainer.setAttribute("id", "registerContainer");
+    divContainer.setAttribute("id", "loginContainer");
 
     let header = document.createElement("h1");
-    header.innerText = "Register & Join Us!";
+    header.innerText = "Login";
 
     divContainer.appendChild(header);
 
     // required classes
     divContainer.classList.add("center");
     divContainer.classList.add("modal-box");
-    divContainer.classList.add("registerContainer");
+    divContainer.classList.add("loginContainer");
 
     // close button
     let divClose = document.createElement("div");
     divClose.classList.add("fas");
-    divClose.classList.add("fa-times");    
-    divClose.setAttribute("id", "registerOverlayClose");
+    divClose.classList.add("fa-times");
+    divClose.setAttribute("id", "loginOverlayClose");
 
     let divFormContainer = document.createElement("div");
     divFormContainer.classList.add("form_container");
 
     let form = document.createElement("form");
-    form.setAttribute("name", "formRegister");
+    form.setAttribute("name", "formLogin");
     form.setAttribute("method", "post");
-    form.setAttribute("id", "formRegister");
+    form.setAttribute("id", "formLogin");
     form.setAttribute("action", "");
 
-    let fieldsArr = ["FirstName", "LastName", "Email", "Username", "Password"];
-    let fieldNamesArr = {"FirstName": "First Name", "LastName": "Last Name", "Email": "Email Address", "Username": "Username", "Password": "Password"}
+    let fieldsArr = ["Username", "Password"];
+    let fieldNamesArr = {"Username": "Username", "Password": "Password"}
 
     for(let field of fieldsArr) {
         let x = document.createElement("div");
@@ -59,7 +59,7 @@ function loadRegisterOverlay() {
 
     let submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "submit");
-    submitBtn.setAttribute("value", "Register");
+    submitBtn.setAttribute("value", "Login");
     submitBtn.setAttribute("name", "submit")
     submitBtn.setAttribute("id", "submit")
 
@@ -79,7 +79,7 @@ function loadRegisterOverlay() {
 
 $(document).ready(function() {
     // Intercept the form submission
-    $('#formRegister').submit(function(event) {
+    $('#formLogin').submit(function(event) {
         // Prevent the default form submission
         event.preventDefault();
 
@@ -88,14 +88,16 @@ $(document).ready(function() {
 
         // Send the form data to the PHP script using AJAX
         $.ajax({
-            type: 'POST',
-            url: 'registerScript.php',
+            type: 'GET',
+            url: 'loginScript.php',
             data: formData,
             success: function(response) {
                 // Handle the response from the server
-                console.log(response);
-                $('#formRegister')[0].reset(); // Reset the form fields
-                $('#registerContainer').toggleClass("show-modal");
+                let answer = JSON.parse(response);
+                //console.log(answer);
+                $('#formLogin')[0].reset(); // Reset the form fields
+                $('#loginContainer').toggleClass("show-modal");
+                localStorage.setItem('username', answer['username']);
                 // You can show a success message or perform other actions here
             },
             error: function(error) {
@@ -106,34 +108,12 @@ $(document).ready(function() {
 });
 
 $(document).ready(function(){
-    $('#topnavRegister').click(function(){
-    $('#registerContainer').toggleClass("show-modal");
+    $('#topnavLogin').click(function(){
+    $('#loginContainer').toggleClass("show-modal");
     
     });
-    $('#registerOverlayClose').click(function(){
-    $('#registerContainer').toggleClass("show-modal");
+    $('#loginOverlayClose').click(function(){
+    $('#loginContainer').toggleClass("show-modal");
 
     });
 }); 
-
-
-
-
-/*
-let field1 = document.createElement("div");
-field1.classList.add("form_wrap");
-field1.classList.add("form_grp");
-
-let field2 = document.createElement("div");
-field2.classList.add("form_wrap");
-
-let field3 = document.createElement("div");
-field3.classList.add("form_wrap");
-field3.classList.add("form_grp");
-
-let field4 = document.createElement("div");
-field4.classList.add("form_wrap");
-
-let field5 = document.createElement("div");
-field5.classList.add("form_wrap");
-*/
