@@ -3,3 +3,75 @@
     height: 100vh !important;
     }
 }
+
+div.card img {
+    height: 200px;
+    width: auto;
+}
+
+div.card p.Description {
+    height: 130px;
+}
+
+div.card {
+    margin-top: 50px;
+}
+
+.MyCartContainer {
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+
+#storeContainer {
+    position: relative;
+}
+
+#myCartDiv {
+    position:absolute;
+    right: -100px;
+    width: 450px;
+}
+
+#myCartItems {
+    overflow-y: scroll; 
+    height:400px;
+}
+
+#myCartFooter{
+    position:relative;
+    top:10px;
+}
+
+#myCartHeader {
+    text-align: center;
+}
+
+.ItemInCart h5, 
+.ItemInCart input, 
+.ItemInCart p, 
+.ItemInCart button{
+    margin: 10px;
+}
+
+.ItemInCart button {
+    border-radius: 5px;
+}
+
+.ItemInCart {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

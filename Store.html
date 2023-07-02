@@ -13,6 +13,7 @@
 
         <link rel="stylesheet" href="topnav.css">
         <link rel="stylesheet" href="Store.css">
+        <!--<link rel="stylesheet" href="CartStyle.css" media="screen" title="no title" charset="utf-8">-->
     </head>
 
     <script src="topnav.js"></script>
@@ -32,37 +33,35 @@
            this.price = price;
         }
 
-        function initProducts() {
-            products = [
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),      
-            new Product("https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg",
-                        "Shampoo",
-                        "Solid shampoo hipopaya for dry to regular hair, eden soap.",
-                        "₪34.00"),                                                                                          
-            ];
+        function loadProducts() {
+            // Send the form data to the PHP script using AJAX
+            $.ajax({
+                type: 'GET',
+                url: 'loadProductsScript.php',
+                //data: formData,
+                success: function(response) {
+                    // Handle the response from the server
+                    products = JSON.parse(response);             
+                    initProducts(products);             
+                    // You can show a success message or perform other actions here
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });                   
+        }
+
+        function initProducts(products) {                                             
 
             let prodsCont = document.getElementById("productsContainer");
             let counter = 0;
 
+            initMyCart();
+
             let curRow = document.createElement("div");
             curRow.classList.add("row");                       
 
-            const PROD_IN_ROW = 4;
+            const PROD_IN_ROW = 3;
             
             products.forEach(product => {    
                 
@@ -76,24 +75,112 @@
                 curCard.style = "width: 18rem;";
 
                 let curImg = document.createElement("img");
-                curImg.setAttribute("src", product.img_url);
+                curImg.setAttribute("src", product.ImageURL);
 
                 let curCardBody = document.createElement("div");
                 curCardBody.classList.add("card-body");
 
                 let curCardTitle = document.createElement("h5");
-                curCardTitle.innerText = product.title;
+                curCardTitle.innerText = product.Name;
 
                 let curCardDesc = document.createElement("p");
-                curCardDesc.innerText = product.description;
+                curCardDesc.innerText = product.Description;
+                curCardDesc.classList.add("Description");
 
                 let curCardPrice = document.createElement("p");
-                curCardPrice.innerText = product.price;
+                curCardPrice.value = product.Price;
+                curCardPrice.innerText = "" + product.Price + " NIS";
 
                 let curCardBtn = document.createElement("a");
                 curCardBtn.classList.add("btn");
                 curCardBtn.classList.add("btn-primary");
                 curCardBtn.innerText = "Add To Cart";
+                curCardBtn.setAttribute("value", product.ID);
+                curCardBtn.addEventListener('click', function() {
+                    let myCartItems = document.getElementById("myCartItems");
+
+                    let curId = this.getAttribute("value");
+
+                    let item = alreadyInCart(curId);                    
+
+                    if(item) {
+                      let counterEl = item.getElementsByTagName("input")[0];
+                      incCounter(counterEl);
+                      return;
+                    }
+
+                    let curItem = document.createElement("div");
+                    curItem.classList.add("ItemInCart");
+                    curItem.value = curId;
+
+                    console.log(this);
+                    console.log(this.getAttribute("value"));
+
+                    // prepare database item
+                    let itemTitleVal = this.parentNode.getElementsByTagName("h5")[0].innerText;
+                    let itemPriceVal = this.parentNode.getElementsByTagName("p")[1].innerText;
+
+                    let itemPlusBtn = document.createElement("button");
+                    itemPlusBtn.innerText = "+";                    
+                    // add event listener to plus
+                    itemPlusBtn.addEventListener("click", function () {
+
+                      let counterEl = this.parentNode.getElementsByTagName("input")[0];
+                      
+                      incCounter(counterEl);
+                        
+                    });
+
+                    let itemMinusBtn = document.createElement("button");
+                    itemMinusBtn.innerText = "-";
+                    // add event listener to minus
+                    itemMinusBtn.addEventListener("click", function () {                      
+                      let counterEl = this.parentNode.getElementsByTagName("input")[0];
+
+                      decCounter(counterEl)                      
+                    })                    
+
+                    let itemCounter = document.createElement("input");
+                    itemCounter.setAttribute("type", "text");
+                    itemCounter.value = "1";
+                    itemCounter.setAttribute("maxlength", "2");
+                    itemCounter.setAttribute("size", "2"); 
+                    //itemCounter.setAttribute("pattern", "[0-9]{1,2}");
+                    itemCounter.readOnly = true;
+                    // add event listener to counter (1-99)
+
+                    let itemRemoveBtn = document.createElement("button");
+                    itemRemoveBtn.innerText = "X";
+                    // add event listener to delete
+                    itemRemoveBtn.addEventListener("click", function () {                      
+                      // put remove function
+                      removeItemFromCart(this.parentNode);
+                      return;                      
+                      
+                    }) 
+
+                    // add item to correct cart database
+                    
+
+
+                    let itemTitle = document.createElement("h5");                    
+                    let itemPrice = document.createElement("p");
+
+                    itemTitle.innerText = itemTitleVal;
+                    itemPrice.innerText = itemPriceVal;
+                    itemPrice.style.display = "inline";                    
+                    
+                    curItem.appendChild(itemTitle);     
+                    curItem.appendChild(itemPlusBtn); 
+                    curItem.appendChild(itemCounter); 
+                    curItem.appendChild(itemMinusBtn); 
+                    curItem.appendChild(itemPrice); 
+                    curItem.appendChild(itemRemoveBtn);                
+
+                    myCartItems.appendChild(curItem);
+
+                    updateTotalPrice();
+                });
 
                 curCardBody.appendChild(curCardTitle);
                 curCardBody.appendChild(curCardDesc);
@@ -110,6 +197,11 @@
                 counter++;
 
                 if(counter%PROD_IN_ROW == 0) {
+                    let curColPad = document.createElement("div");
+                    curColPad.classList.add("col-3");
+
+                    curRow.appendChild(curColPad);
+
                     prodsCont.appendChild(curRow);
                     curRow = document.createElement("div");
                     curRow.classList.add("row"); 
@@ -121,75 +213,288 @@
             }            
         }
 
+        function initMyCart() {
+            let myCartContainer = document.getElementById("myCartContainer");
+            let myCartBody = document.createElement("div");
+            myCartBody.classList.add("card-body");
+            //let myCartRow = document.createElement("div");
+            //let myCartColPad = document.createElement("div");
+            //let myCartColMain = document.createElement("div");
+            let myCartHeader = document.createElement("h1");
+            let myCartItems = document.createElement("div");
+
+            let myCartFooter = document.createElement("div");
+            myCartFooter.setAttribute("id", "myCartFooter");            
+
+            let myCartCheckoutBtn = document.createElement("a");
+            myCartCheckoutBtn.classList.add("btn");
+            myCartCheckoutBtn.classList.add("btn-primary");
+            myCartCheckoutBtn.innerText = "Checkout";
+
+            let myCartTotalDiv = document.createElement("div");
+            myCartTotalDiv.setAttribute("id", "myCartTotalDiv");
+            myCartTotalDiv.innerText = "Total Price: ";            
+
+            let myCartTotalVal = document.createElement("span");
+            myCartTotalVal.setAttribute("id", "myCartTotalVal");
+            myCartTotalVal.innerText = "0";
+
+            myCartTotalDiv.appendChild(myCartTotalVal);
+
+            myCartFooter.appendChild(myCartTotalDiv);
+            myCartFooter.appendChild(myCartCheckoutBtn);            
 
 
+
+            let myCartDiv = document.createElement("div");
+            myCartDiv.setAttribute("id", "myCartDiv");   
+            myCartDiv.classList.add("card");                    
+
+            myCartItems.setAttribute("id", "myCartItems");
+
+            myCartHeader.innerText = "My Cart:";
+            myCartHeader.setAttribute("id", "myCartHeader");
+            
+            //myCartContainer.appendChild(myCartRow)
+            //myCartColMain.appendChild(myCartHeader);
+            //myCartColMain.appendChild(myCartItems);
+            //myCartRow.appendChild(myCartColPad);
+            //myCartRow.appendChild(myCartColMain);
+
+            //myCartContainer.classList.add("container");
+            //myCartRow.classList.add("row"); 
+            //myCartColPad.classList.add("col-9"); 
+            //myCartColMain.classList.add("col-3"); 
+
+            myCartContainer.classList.add("MyCartContainer");
+
+            myCartBody.appendChild(myCartItems);
+            myCartBody.appendChild(myCartFooter);
+
+            myCartDiv.appendChild(myCartHeader);
+            myCartDiv.appendChild(myCartBody);
+
+            myCartContainer.appendChild(myCartDiv);
+        }
+
+        function removeItemFromCart(el) {
+          let myCartItems = document.getElementById("myCartItems");
+
+          myCartItems.removeChild(el);  
+          
+          updateTotalPrice();
+        }
+
+        function updateDB() {
+          // send ajax with current cart items foreach
+        }
+
+        function updateTotalPrice() {
+          let myCartItems = document.getElementsByClassName("ItemInCart");
+
+          let sum = 0;
+          let unitPrice;
+          let numOfUnits;
+
+          for(let item of myCartItems) {
+            unitPrice = parseFloat(item.getElementsByTagName("p")[0].innerText);
+            numOfUnits = parseInt(item.getElementsByTagName("input")[0].value);
+            sum += unitPrice*numOfUnits;
+          }
+          
+          let totalElm = document.getElementById("myCartTotalVal");
+          totalElm.innerText = sum.toFixed(2) + " NIS";
+        }
+
+        function incCounter(counterEl) {          
+
+          if(counterEl.value == 99){
+            return;
+          }
+
+          counterEl.value = parseInt(counterEl.value)+1;
+          
+          updateTotalPrice();
+        }
+
+        function decCounter(counterEl) {          
+
+          if(counterEl.value == 1){
+            removeItemFromCart(counterEl.parentNode);            
+            return;
+          }
+
+          counterEl.value = parseInt(counterEl.value)-1;
+          updateTotalPrice();  
+
+        }      
         
+        function alreadyInCart(curId) {
+          let myCartItems = document.getElementsByClassName("ItemInCart");
+
+          for(let item of myCartItems) {
+            if(item.value == curId) {              
+              return item;
+            }
+          }
+
+          return false;
+        }
     </script>
     
     <body>
-        <script>
-            init();
+
+        <script>            
+            init();                        
         </script>
-        <!--
-        <div class="container">
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4"><h1>Store Page</h1></div>                
-                <div class="col-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="https://www.ecostore.co.il/wp-content/uploads/2021/03/שמפו-היפופיאה-300x300.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Shampoo</h5>
-                          <p class="card-text">Solid shampoo hipopaya for dry to regular hair, eden soap.</p>
-                          <p class="card-text">₪34.00</p>                          
-                          <a href="#" class="btn btn-primary">Add To Cart</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                </div>
-                <div class="col-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                </div>
-            </div>
+
+        <div id="storeContainer">
             
-        </div> 
-        -->
-
-        <div class="container" id="productsContainer">
-
+            <div class="container" id="myCartContainer">
+                <!--
+                <div class="shopping-cart">
+                    <!- - Title - ->
+                    <div class="title">
+                      Shopping Bag
+                    </div>
+              
+                    <!- - Product #1 - ->
+                    <div class="item">
+                      <div class="buttons">
+                        <span class="delete-btn"></span>
+                        <span class="like-btn"></span>
+                      </div>
+              
+                      <div class="image">
+                        <img src="item-1.png" alt="" />
+                      </div>
+              
+                      <div class="description">
+                        <span>Common Projects</span>
+                        <span>Bball High</span>
+                        <span>White</span>
+                      </div>
+              
+                      <div class="quantity">
+                        <button class="plus-btn" type="button" name="button">
+                          <img src="plus.svg" alt="" />
+                        </button>
+                        <input type="text" name="name" value="1">
+                        <button class="minus-btn" type="button" name="button">
+                          <img src="minus.svg" alt="" />
+                        </button>
+                      </div>
+              
+                      <div class="total-price">$549</div>
+                    </div>
+              
+                    <!- - Product #2 - ->
+                    <div class="item">
+                      <div class="buttons">
+                        <span class="delete-btn"></span>
+                        <span class="like-btn"></span>
+                      </div>
+              
+                      <div class="image">
+                        <img src="item-2.png" alt=""/>
+                      </div>
+              
+                      <div class="description">
+                        <span>Maison Margiela</span>
+                        <span>Future Sneakers</span>
+                        <span>White</span>
+                      </div>
+              
+                      <div class="quantity">
+                        <button class="plus-btn" type="button" name="button">
+                          <img src="plus.svg" alt="" />
+                        </button>
+                        <input type="text" name="name" value="1">
+                        <button class="minus-btn" type="button" name="button">
+                          <img src="minus.svg" alt="" />
+                        </button>
+                      </div>
+              
+                      <div class="total-price">$870</div>
+                    </div>
+              
+                    <!- - Product #3 - ->
+                    <div class="item">
+                      <div class="buttons">
+                        <span class="delete-btn"></span>
+                        <span class="like-btn"></span>
+                      </div>
+              
+                      <div class="image">
+                        <img src="item-3.png" alt="" />
+                      </div>
+              
+                      <div class="description">
+                        <span>Our Legacy</span>
+                        <span>Brushed Scarf</span>
+                        <span>Brown</span>
+                      </div>
+              
+                      <div class="quantity">
+                        <button class="plus-btn" type="button" name="button">
+                          <img src="plus.svg" alt="" />
+                        </button>
+                        <input type="text" name="name" value="1">
+                        <button class="minus-btn" type="button" name="button">
+                          <img src="minus.svg" alt="" />
+                        </button>
+                      </div>
+              
+                      <div class="total-price">$349</div>
+                    </div>
+                  </div> 
+                  -->               
+            </div>
+            <div class="container" id="productsContainer"></div>            
         </div>
 
         <script>
-            initProducts();
+            loadProducts();
         </script>
+
+<!--
+<script type="text/javascript">
+    $('.minus-btn').on('click', function(e) {
+          e.preventDefault();
+          var $this = $(this);
+          var $input = $this.closest('div').find('input');
+          var value = parseInt($input.val());
+
+          if (value > 1) {
+              value = value - 1;
+          } else {
+              value = 0;
+          }
+
+      $input.val(value);
+
+      });
+
+      $('.plus-btn').on('click', function(e) {
+          e.preventDefault();
+          var $this = $(this);
+          var $input = $this.closest('div').find('input');
+          var value = parseInt($input.val());
+
+          if (value < 100) {
+            value = value + 1;
+          } else {
+              value =100;
+          }
+
+          $input.val(value);
+      });
+
+    $('.like-btn').on('click', function() {
+      $(this).toggleClass('is-active');
+    });
+  </script>
+  -->
+
     </body>
 </html>
