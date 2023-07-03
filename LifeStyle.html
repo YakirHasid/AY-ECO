@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="topnav.css">
 
         <link rel="stylesheet" href="LifeStyle.css">
+        <link rel="stylesheet" href="registerOverlay.css">
 
         <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
 
@@ -44,10 +45,14 @@
     </head>
 
     <script src="topnav.js"></script>
+    <script src="registerOverlay.js"></script>
+    <script src="loginOverlay.js"></script>
     
     <script>
         function init() {
-            topnavLoader("LifeStyle");            
+            topnavLoader("LifeStyle");    
+            loadRegisterOverlay();
+            loadLoginOverlay();        
         }
     </script>
 

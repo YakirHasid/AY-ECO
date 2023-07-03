@@ -38,6 +38,8 @@ function topnavLoader(curPage) {
     let loginLinker = document.createElement("a");
 
     loginLinker.classList.add("aRight");
+    loginLinker.classList.add("start-btn");
+    loginLinker.setAttribute("id", "topnavLogin");
     loginLinker.innerText = "Login";
     loginLinker.setAttribute("href", "#");    
 
@@ -46,6 +48,7 @@ function topnavLoader(curPage) {
 
     registerLinker.classList.add("aRight");
     registerLinker.classList.add("start-btn");
+    registerLinker.setAttribute("id", "topnavRegister");
     registerLinker.innerText = "Register";
     registerLinker.setAttribute("href", "#");
 

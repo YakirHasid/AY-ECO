@@ -12,7 +12,7 @@ body{
 }
 */
 
-.registerContainer {
+.registerContainer, .loginContainer {
     z-index: 1;
 }
 

@@ -10,17 +10,23 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>    
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
+        <link rel="stylesheet" href="registerOverlay.css">
         <link rel="stylesheet" href="topnav.css">
-        <link rel="stylesheet" href="Store.css">
+        <link rel="stylesheet" href="Store.css">        
         <!--<link rel="stylesheet" href="CartStyle.css" media="screen" title="no title" charset="utf-8">-->
     </head>
 
     <script src="topnav.js"></script>
+    <script src="registerOverlay.js"></script>
+    <script src="loginOverlay.js"></script>
     
     <script>
         function init() {
             topnavLoader("Store");
+            loadRegisterOverlay();
+            loadLoginOverlay();
         }
     </script>
 
@@ -179,7 +185,7 @@
 
                     myCartItems.appendChild(curItem);
 
-                    updateTotalPrice();
+                    updateCart();
                 });
 
                 curCardBody.appendChild(curCardTitle);
@@ -282,11 +288,67 @@
 
           myCartItems.removeChild(el);  
           
-          updateTotalPrice();
+          updateCart();
         }
 
-        function updateDB() {
-          // send ajax with current cart items foreach
+        function updateCart() {
+          updateTotalPrice();
+          updateDB();
+        }
+
+        function updateDB() {          
+
+          // init obj that holds the username and
+          // for now an empty items assoc array          
+          let username = localStorage.getItem('username');
+          let obj = {"username": username, "items": {}};
+
+          $.ajax({
+                type: 'POST',
+                url: 'clearCart.php',
+                data: obj,
+                success: function(response) {
+                    // Handle the response from the server
+                    
+                    // You can show a success message or perform other actions here
+
+                    if(response != "true")
+                      return;
+
+                    // get all items in cart
+                    let myCartItems = document.getElementsByClassName("ItemInCart");
+
+                    let itemId;
+                    let numOfUnits;
+
+                    for(let item of myCartItems) {
+                      // get item id and number of units of the current item in cart
+                      itemId = item.value;
+                      numOfUnits = parseInt(item.getElementsByTagName("input")[0].value);
+                      
+                      obj['items'][itemId] = numOfUnits;
+                    }            
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'updateCart.php',
+                        data: obj,
+                        success: function(response) {
+                            // Handle the response from the server                            
+                            console.log(response);
+                            // You can show a success message or perform other actions here
+                        },
+                        error: function(error) {
+                            console.log('An error occurred: ' + error);
+                        }            
+                    }); 
+
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });                                   
         }
 
         function updateTotalPrice() {
@@ -314,7 +376,7 @@
 
           counterEl.value = parseInt(counterEl.value)+1;
           
-          updateTotalPrice();
+          updateCart();
         }
 
         function decCounter(counterEl) {          
@@ -325,7 +387,7 @@
           }
 
           counterEl.value = parseInt(counterEl.value)-1;
-          updateTotalPrice();  
+          updateCart();  
 
         }      
         

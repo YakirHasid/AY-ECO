@@ -2,6 +2,22 @@
     <head>
         <link rel="stylesheet" href="topnav.css">
 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">-->    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+        <link rel="stylesheet" href="registerOverlay.css">
+        <link rel="stylesheet" href="topnav.css">
+        <!--<link rel="stylesheet" href="Store.css">-->        
+        <!--<link rel="stylesheet" href="CartStyle.css" media="screen" title="no title" charset="utf-8">-->
+
 
         <style>
             .switching-text {
@@ -153,6 +169,9 @@
     </head>
 
     <script src="topnav.js"></script>
+    <script src="registerOverlay.js"></script>
+    <script src="loginOverlay.js"></script>
+
     <script>
         // Function to switch the text
         function switchText() {
@@ -198,12 +217,14 @@
     <script>
         function init() {
             topnavLoader("Events");
+            loadRegisterOverlay();
+            loadLoginOverlay();
         }
     </script>
     
     <body>
         <script>
-        init()
+        init();
          </script>
 
     <div class="switching-text" >
@@ -243,7 +264,7 @@
         <div class="event">
                 <span class="span1">Beach cleaning:</span><br>
                 <span class="span2">Beit Yanai beach</span><br><br>
-                <span class="span3">1.7.2023</span>
+                <span class="span3">30.10.2023</span>
                 
                 <div class="countdown" id="countdown">
                     <div class="countdown-block">
@@ -292,7 +313,7 @@
         setInterval(switchText, 3000);
 
         // Set the target date for the countdown (June 30, 2023 at 00:00:00 UTC)
-        var countdownDate = new Date('2023-07-01T00:00:00Z').getTime();
+        var countdownDate = new Date('2023-10-30T00:00:00Z').getTime();
 
         // Update the countdown clock every second
         var countdownInterval = setInterval(function() {
