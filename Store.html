@@ -185,7 +185,7 @@
 
                     myCartItems.appendChild(curItem);
 
-                    updateTotalPrice();
+                    updateCart();
                 });
 
                 curCardBody.appendChild(curCardTitle);
@@ -288,11 +288,67 @@
 
           myCartItems.removeChild(el);  
           
-          updateTotalPrice();
+          updateCart();
         }
 
-        function updateDB() {
-          // send ajax with current cart items foreach
+        function updateCart() {
+          updateTotalPrice();
+          updateDB();
+        }
+
+        function updateDB() {          
+
+          // init obj that holds the username and
+          // for now an empty items assoc array          
+          let username = localStorage.getItem('username');
+          let obj = {"username": username, "items": {}};
+
+          $.ajax({
+                type: 'POST',
+                url: 'clearCart.php',
+                data: obj,
+                success: function(response) {
+                    // Handle the response from the server
+                    
+                    // You can show a success message or perform other actions here
+
+                    if(response != "true")
+                      return;
+
+                    // get all items in cart
+                    let myCartItems = document.getElementsByClassName("ItemInCart");
+
+                    let itemId;
+                    let numOfUnits;
+
+                    for(let item of myCartItems) {
+                      // get item id and number of units of the current item in cart
+                      itemId = item.value;
+                      numOfUnits = parseInt(item.getElementsByTagName("input")[0].value);
+                      
+                      obj['items'][itemId] = numOfUnits;
+                    }            
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'updateCart.php',
+                        data: obj,
+                        success: function(response) {
+                            // Handle the response from the server                            
+                            console.log(response);
+                            // You can show a success message or perform other actions here
+                        },
+                        error: function(error) {
+                            console.log('An error occurred: ' + error);
+                        }            
+                    }); 
+
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });                                   
         }
 
         function updateTotalPrice() {
@@ -320,7 +376,7 @@
 
           counterEl.value = parseInt(counterEl.value)+1;
           
-          updateTotalPrice();
+          updateCart();
         }
 
         function decCounter(counterEl) {          
@@ -331,7 +387,7 @@
           }
 
           counterEl.value = parseInt(counterEl.value)-1;
-          updateTotalPrice();  
+          updateCart();  
 
         }      
         
