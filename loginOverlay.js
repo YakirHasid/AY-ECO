@@ -49,6 +49,8 @@ function loadLoginOverlay() {
         let input = document.createElement("input");
         input.setAttribute("type", "text");
         input.setAttribute("name", field);
+        input.pattern = ".{1,}";
+        input.required = true;
 
         item.appendChild(label);
         item.appendChild(input);
