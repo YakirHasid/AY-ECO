@@ -9,7 +9,7 @@ function loadLoginOverlay() {
 
     divContainer.appendChild(header);
 
-    // required classes
+    // required classes to the main container
     divContainer.classList.add("center");
     divContainer.classList.add("modal-box");
     divContainer.classList.add("loginContainer");
@@ -20,18 +20,22 @@ function loadLoginOverlay() {
     divClose.classList.add("fa-times");
     divClose.setAttribute("id", "loginOverlayClose");
 
+    // form container
     let divFormContainer = document.createElement("div");
     divFormContainer.classList.add("form_container");
 
+    //form elements
     let form = document.createElement("form");
     form.setAttribute("name", "formLogin");
     form.setAttribute("method", "post");
     form.setAttribute("id", "formLogin");
     form.setAttribute("action", "");
 
+    // decleration of the fields
     let fieldsArr = ["Username", "Password"];
     let fieldNamesArr = {"Username": "Username", "Password": "Password"}
 
+    //create generically the fields 
     for(let field of fieldsArr) {
         let x = document.createElement("div");
         x.classList.add("form_wrap");
@@ -54,6 +58,7 @@ function loadLoginOverlay() {
         form.append(x);
     }
 
+    //create the loginbtn
     let divBtn = document.createElement("div");
     divBtn.classList.add("btn");
 
@@ -63,6 +68,15 @@ function loadLoginOverlay() {
     submitBtn.setAttribute("name", "submit")
     submitBtn.setAttribute("id", "submit")
 
+    //create failed response container
+    let failedContainer = document.createElement("div");
+    let failedMessage = document.createElement("p");
+    failedMessage.setAttribute("id", "failedMessage");
+    failedMessage.setAttribute("style", "color:red;text-align :center");
+    
+
+    failedContainer.appendChild(failedMessage);
+
     divBtn.appendChild(submitBtn);
 
     form.appendChild(divBtn);
@@ -70,7 +84,10 @@ function loadLoginOverlay() {
     divFormContainer.appendChild(form);
 
     divContainer.appendChild(divClose);
-    divContainer.appendChild(divFormContainer)
+    divContainer.appendChild(divFormContainer);
+    divContainer.appendChild(failedContainer);
+    
+
 
     // add formContainer to body
     document.body.appendChild(divContainer);
@@ -92,9 +109,18 @@ $(document).ready(function() {
             url: 'loginScript.php',
             data: formData,
             success: function(response) {
+
+                let failedMessage = document.getElementById("failedMessage");
+       
+                if(response==""){
+                    failedMessage.innerText="Incorrect username or password";
+                    return;
+                }
+                failedMessage.innerText="";
+
                 // Handle the response from the server
                 let answer = JSON.parse(response);
-                //console.log(answer);
+               
                 $('#formLogin')[0].reset(); // Reset the form fields
                 $('#loginContainer').toggleClass("show-modal");
                 $('#topnavRegister').toggleClass("hidden");

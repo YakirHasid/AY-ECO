@@ -1,5 +1,31 @@
 /* The HTML and Basic Squares */
 
+.VideoContainer{
+  width: 85%;
+  background: #c4e0a7;
+  border-radius: 6px;
+  padding: 20px 60px 30px 40px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  align-items: center;
+}
+
+#videoDiv{
+padding: 20px 60px 30px 40px;
+margin: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+body {
+background-size: auto;
+background-attachment: fixed;
+align-items: center;
+justify-content: center;
+}
+
+
 body {
     margin: 20px auto;
     margin-top:0px;

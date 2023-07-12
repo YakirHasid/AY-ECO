@@ -89,8 +89,11 @@ function topnavLoader(curPage) {
 
 function loggedChecker() {
     if(localStorage.getItem('username') != null) {
-      
+
         togglelogged();
+        let usernameBtn = document.getElementById("topnavUsername");
+        usernameBtn.innerText= "Hello "+ localStorage.getItem('username'); 
+
     }
  
 }
@@ -105,7 +108,6 @@ function togglelogged(){
     loginBtn.classList.toggle("hidden");
     logoutBtn.classList.toggle("hidden");
     usernameBtn.classList.toggle("hidden");
-
 }
 
 function logoutfunc(){
