@@ -25,18 +25,7 @@ body{
 .center h1 {
     text-align: center;
 }
-.start-btn a{
-  font-size: 22px;
-  background: white;
-  color: #02242b;
-  padding: 15px 18px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 1px;
 
-}
 .modal-box{
   top: 40%;
   opacity: 0;
@@ -129,4 +118,12 @@ body{
 
 .btn {
     width: 100%;
+}
+
+.topnav a.start-btn.hidden {
+  display: none;
+}
+
+.topnav a.logged.hidden {
+  display: none;
 }

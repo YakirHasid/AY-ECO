@@ -97,6 +97,14 @@ $(document).ready(function() {
                 //console.log(answer);
                 $('#formLogin')[0].reset(); // Reset the form fields
                 $('#loginContainer').toggleClass("show-modal");
+                $('#topnavRegister').toggleClass("hidden");
+                $('#topnavLogin').toggleClass("hidden");
+                $('#topnavLogout').toggleClass("hidden");
+                $('#topnavUsername').toggleClass("hidden");
+                $('#topnavUsername').text("Hello " +answer['username']);
+
+                // TODO: add toggle class for logged in elements
+                
                 localStorage.setItem('username', answer['username']);
                 // You can show a success message or perform other actions here
             },
