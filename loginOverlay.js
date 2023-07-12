@@ -99,6 +99,10 @@ $(document).ready(function() {
                 $('#loginContainer').toggleClass("show-modal");
                 $('#topnavRegister').toggleClass("hidden");
                 $('#topnavLogin').toggleClass("hidden");
+                $('#topnavLogout').toggleClass("hidden");
+                $('#topnavUsername').toggleClass("hidden");
+                $('#topnavUsername').text("Hello " +answer['username']);
+
                 // TODO: add toggle class for logged in elements
                 
                 localStorage.setItem('username', answer['username']);
