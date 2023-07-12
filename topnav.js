@@ -52,6 +52,21 @@ function topnavLoader(curPage) {
     registerLinker.innerText = "Register";
     registerLinker.setAttribute("href", "#");
 
+    //add logout linker
+    let logoutLinker = document.createElement("a");
+
+    logoutLinker.classList.add("aRight");
+    logoutLinker.classList.add("start-btn");
+    logoutLinker.classList.add("hidden");
+    logoutLinker.setAttribute("id", "topnavLogout");
+    logoutLinker.innerText = "Logout";
+    // logoutLinker.setAttribute("href", "#");   
+    logoutLinker.setAttribute("onclick", "logoutfunc()");
+
+
+
+
+    topnav.appendChild(logoutLinker);
     topnav.appendChild(registerLinker);
     topnav.appendChild(loginLinker);
 
@@ -67,8 +82,18 @@ function loggedChecker() {
     if(localStorage.getItem('username') != null) {
         let registerBtn = document.getElementById("topnavRegister");
         let loginBtn = document.getElementById("topnavLogin");
+        let logoutBtn = document.getElementById("topnavLogout");
 
         registerBtn.classList.toggle("hidden");
         loginBtn.classList.toggle("hidden");
+        logoutBtn.classList.toggle("hidden");
+
+
     }
+ 
+}
+
+function logoutfunc(){
+
+    localStorage.removeItem('username');
 }
