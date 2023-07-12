@@ -68,9 +68,14 @@ function loadLoginOverlay() {
     submitBtn.setAttribute("name", "submit")
     submitBtn.setAttribute("id", "submit")
 
-    //
+    //create failed response container
+    let failedContainer = document.createElement("div");
+    let failedMessage = document.createElement("p");
+    failedMessage.setAttribute("id", "failedMessage");
+    failedMessage.setAttribute("style", "color:red;text-align :center");
+    
 
-
+    failedContainer.appendChild(failedMessage);
 
     divBtn.appendChild(submitBtn);
 
@@ -79,7 +84,10 @@ function loadLoginOverlay() {
     divFormContainer.appendChild(form);
 
     divContainer.appendChild(divClose);
-    divContainer.appendChild(divFormContainer)
+    divContainer.appendChild(divFormContainer);
+    divContainer.appendChild(failedContainer);
+    
+
 
     // add formContainer to body
     document.body.appendChild(divContainer);
@@ -102,9 +110,14 @@ $(document).ready(function() {
             data: formData,
             success: function(response) {
 
-                if(response==null){
-
+                let failedMessage = document.getElementById("failedMessage");
+       
+                if(response==""){
+                    failedMessage.innerText="Incorrect username or password";
+                    return;
                 }
+                failedMessage.innerText="";
+
                 // Handle the response from the server
                 let answer = JSON.parse(response);
                
