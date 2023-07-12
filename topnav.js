@@ -60,13 +60,22 @@ function topnavLoader(curPage) {
     logoutLinker.classList.add("hidden");
     logoutLinker.setAttribute("id", "topnavLogout");
     logoutLinker.innerText = "Logout";
-    // logoutLinker.setAttribute("href", "#");   
-    logoutLinker.setAttribute("onclick", "logoutfunc()");
+    logoutLinker.setAttribute("href", "#");   
+    
+    //add username 
 
+    let username = document.createElement("a");
 
-
+    username.classList.add("aRight");
+    username.classList.add("start-btn");
+    username.classList.add("hidden");
+    username.setAttribute("id", "topnavUsername");
+    username.innerText = "";
+    
+    
 
     topnav.appendChild(logoutLinker);
+    topnav.appendChild(username);
     topnav.appendChild(registerLinker);
     topnav.appendChild(loginLinker);
 
@@ -80,20 +89,33 @@ function topnavLoader(curPage) {
 
 function loggedChecker() {
     if(localStorage.getItem('username') != null) {
-        let registerBtn = document.getElementById("topnavRegister");
-        let loginBtn = document.getElementById("topnavLogin");
-        let logoutBtn = document.getElementById("topnavLogout");
-
-        registerBtn.classList.toggle("hidden");
-        loginBtn.classList.toggle("hidden");
-        logoutBtn.classList.toggle("hidden");
-
-
+      
+        togglelogged();
     }
  
+}
+
+function togglelogged(){
+    let registerBtn = document.getElementById("topnavRegister");
+    let loginBtn = document.getElementById("topnavLogin");
+    let logoutBtn = document.getElementById("topnavLogout");
+    let usernameBtn = document.getElementById("topnavUsername");
+
+    registerBtn.classList.toggle("hidden");
+    loginBtn.classList.toggle("hidden");
+    logoutBtn.classList.toggle("hidden");
+    usernameBtn.classList.toggle("hidden");
+
 }
 
 function logoutfunc(){
 
     localStorage.removeItem('username');
 }
+
+$(document).ready(function(){
+    $('#topnavLogout').click(function(){
+    localStorage.removeItem('username');
+    togglelogged();
+    });
+}); 
