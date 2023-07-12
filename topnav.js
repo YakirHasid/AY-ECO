@@ -58,7 +58,17 @@ function topnavLoader(curPage) {
     // add topnav to body
     document.body.appendChild(topnav);
 
- 
+    
 
  
+}
+
+function loggedChecker() {
+    if(localStorage.getItem('username') != null) {
+        let registerBtn = document.getElementById("topnavRegister");
+        let loginBtn = document.getElementById("topnavLogin");
+
+        registerBtn.classList.toggle("hidden");
+        loginBtn.classList.toggle("hidden");
+    }
 }
