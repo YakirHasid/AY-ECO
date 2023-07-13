@@ -19,12 +19,15 @@
     $sql = "INSERT INTO User (username, password, firstname, lastname, email) 
     VALUES ('".$formUsername."', '".$formPassword."', '".$formFirstName."', '".$formLastName."', '".$formEmail."');";
 
-    if($conn->query($sql)) {
-        echo "New record created successfully";
+    $answer = $conn->query($sql);
+
+    if($answer) {
+        $result = array("username"=>$formUsername,"message"=>"New record created successfully" );
     }
     else {
-        echo "Error: " .$sql . "<br>" . $conn->error;
+        $result = array("message"=>"Error: " . $conn->error );
     }
+    echo json_encode($result);
     
     $conn->close();
 ?>
