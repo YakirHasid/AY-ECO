@@ -8,7 +8,6 @@
     //$formId = $_POST["Id"];
     $formUsername = $_POST["Username"];
     $formText = $_POST["Text"];
-    $formPostDate = $_POST["PostDate"];
 
     date_default_timezone_set("Israel");
 
