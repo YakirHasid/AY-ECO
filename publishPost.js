@@ -79,8 +79,7 @@ $(document).ready(function() {
         // Specific form field
         var formData = {
         Username: localStorage.getItem('username'),
-        Text: $("#TextField").val(),
-        PostDate: Date.now()
+        Text: $("#TextField").val()
         };
 
         // Send the form data to the PHP script using AJAX
