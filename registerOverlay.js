@@ -65,6 +65,16 @@ function loadRegisterOverlay() {
     submitBtn.setAttribute("name", "submit")
     submitBtn.setAttribute("id", "submit")
 
+    //create failed response container
+    let failedContainer = document.createElement("div");
+    let failedMessage = document.createElement("p");
+    failedMessage.setAttribute("id", "failedMessage");
+    failedMessage.setAttribute("style", "color:red;text-align :center");
+    
+
+    failedContainer.appendChild(failedMessage);
+
+
     divBtn.appendChild(submitBtn);
 
     form.appendChild(divBtn);
@@ -72,7 +82,8 @@ function loadRegisterOverlay() {
     divFormContainer.appendChild(form);
 
     divContainer.appendChild(divClose);
-    divContainer.appendChild(divFormContainer)
+    divContainer.appendChild(divFormContainer);
+    divContainer.appendChild(failedContainer);
 
     // add formContainer to body
     document.body.appendChild(divContainer);
@@ -94,11 +105,26 @@ $(document).ready(function() {
             url: 'registerScript.php',
             data: formData,
             success: function(response) {
+
+                let answer = JSON.parse(response);
+                //cheack if response is not  ok
+                let failedMessage = document.getElementById("failedMessage");
+
+                if(answer["message"]!="New record created successfully")
+                {
+                    failedMessage.innerText="Username is already taken, choose another username";
+                    return;
+                }
+
                 // Handle the response from the server
                 console.log(response);
                 $('#formRegister')[0].reset(); // Reset the form fields
                 $('#registerContainer').toggleClass("show-modal");
+
                 // You can show a success message or perform other actions here
+                alert("Happy to have you here "+answer["username"]+ " you can login, and enjoy your stay :)");
+
+
             },
             error: function(error) {
                 console.log('An error occurred: ' + error);
