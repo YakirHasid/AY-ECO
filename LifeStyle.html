@@ -133,5 +133,162 @@
         <script>
             videoInit();
         </script>
+
+        <div id="recyclingFormContainer">
+            <form>
+                <p>
+                    <label>Full Name: <input type="text" name="nameField" id="nameField"></label>
+                </p>
+
+                <p>
+                    <label>District: <input list="districts" name="district" id="district">                
+                    <datalist id="districts">
+                    <option value="Northern District">
+                    <option value="Haifa District">
+                    <option value="Tel-Aviv District">
+                    <option value="Central District">
+                    <option value="Jerusalem District">
+                    <option value="Southern District"></option>
+                    </datalist>
+                    </label>
+                </p>
+
+                <p>
+                    <label>Address: <input type="text" name="nameField" id="nameField"></label>
+                </p>
+
+                <p>
+                    <label> Email:
+                        <input type="email" name="emailField" id="emailField">                        
+                    </label>
+                </p>                
+
+                <p>
+                    <label> Phone Number:
+                        <input type="tel" name="telField" id="telField" pattern="[0-9]{3}-[0-9]{7}">
+                        <small>Format: 123-4567890</small>                        
+                    </label>
+                </p>  
+
+                <p><fieldset><legend>Self Dropout</legend>
+                    <p>
+                        <label> Yes 
+                            <input type="radio" name="collectionAddressField" value="yes">                    
+                        </label>
+                    </p>
+                    
+                    <p>
+                        <label> No
+                            <input type="radio" name="collectionAddressField" value="no">                    
+                        </label>
+                    </p>
+                </fieldset></p>
+
+                <p>
+                    <label> Item Type
+                        <select name="itemTypeField" id="itemTypeField">
+                            <option value="Fridge">Fridge</option>
+                            <option value="Mobile Phone">Mobile Phone</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Television">Television</option>
+                            <option value="Computer">Computer</option>                            
+                        </select>                    
+                    </label>
+                </p>
+
+                <p>
+                    <label> URL of the manufacturer's website:
+                        <input type="url" name="urlField" id="urlField">                        
+                    </label>
+                </p> 
+
+                <p>
+                    <label> Quantity
+                        <input type="number" name="quantityField" id="quantityField" min="1" max="10" onchange="generateColorInputs()">
+                    </label>
+                </p>
+
+                <div id="colorInputs"></div>
+
+                <script>
+                    function generateColorInputs() {
+                        var quantity = document.getElementById("quantityField").value;
+                        var colorInputs = document.getElementById("colorInputs");
+                        colorInputs.innerHTML = "Choose the color of your items:<br>"; // Clear previous inputs                    
+
+                        for (var i = 0; i < quantity; i++) {
+                            var br = document.createElement("br");
+                            var span = document.createElement("span");
+                            span.innerText = (i+1) + ". ";
+                            var input = document.createElement("input");
+                            input.type = "color";
+                            input.name = "color";
+                            input.required = true;
+                            colorInputs.appendChild(span);
+                            colorInputs.appendChild(input);
+                            colorInputs.appendChild(br);
+                        }
+                    }
+                </script>
+
+                <p>
+                    <label> Weight
+                        <input type="range" name="weightField" id="weightField" min="0" max="1000">
+                        <p>Value: <output id="weightValue"></output></p>
+                    </label>
+                </p>
+
+                <script>
+                    const weightValue = document.querySelector("#weightValue");
+                    const weightInput = document.querySelector("#weightField");
+                    weightValue.textContent = weightInput.value;
+                    weightInput.addEventListener("input", (event) => {
+                        weightValue.textContent = event.target.value;
+                    });
+                </script>
+
+                <p>
+                    <label> Purchase Date
+                        <input type="date" name="dateField" id="dateField">                        
+                    </label>
+                </p>                
+
+                <p>
+                    <label> Purchase Time
+                        <input type="time" name="timeField" id="timeField">                        
+                    </label>
+                </p>                
+
+                <!-- TODO: Check if it's ok to use datetime-local instead of datetime -->
+                <p>
+                    <label> Pickup Date and Time
+                        <input type="datetime-local" name="datetimeField" id="datetimeField">                                                
+                    </label>
+                </p>  
+                
+                <!-- TODO: Finish this -->
+                <p><fieldset><legend>Product Status</legend>
+                    <p>
+                        <label> Broken 
+                            <input type="checkbox" value="Broken">                    
+                        </label>
+                    </p>
+                    
+                    <p>
+                        <label> Flamable
+                            <input type="checkbox" value="Flamable">                    
+                        </label>
+                    </p>
+
+                    <p>
+                        <label> Flamable
+                            <input type="checkbox" value="Flamable">                    
+                        </label>
+                    </p>
+
+                </fieldset></p>
+                
+            </form>
+        </div>
     </body>
 </html>
