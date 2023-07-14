@@ -75,3 +75,9 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.Price {
+    font-style: italic;
+    font-size: 1.2em;
+    color: rgb(53, 1, 53);
+}
