@@ -62,6 +62,7 @@ body {
   #callToActionContainer p {    
     font-size: 2em;
     color: limegreen;
+    font-weight: bold;
   }
   
 
