@@ -142,3 +142,42 @@ color:#fff;
     top:-5px;
     background:#ccf;
   }
+
+  #recyclingFormContainer{
+
+    width: 45%;
+    height: fit-content;
+    padding: 20px 60px 30px 40px;
+    margin: auto;
+    margin-top: 30px; 
+    align-items: center;
+    font-size: 2em;
+    color:#000;
+    background:rgb(120, 119, 158);
+    display:block;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  }
+
+  #recyclingFormContainer h1, #recyclingFormContainer h2 {
+    text-align: center;
+  } 
+
+  #recyclingFormContainer p , legend, #colorInputs{
+    font-size: 0.5em !important;
+  }
+
+  #submitField{
+    border-radius: 8px ;
+    padding: 5 5 5 5  ;
+    justify-content: right;
+  }
+
+  #submitFieldContainer {
+   display: block; 
+  }
+
+  #colorInputs span {
+    margin-left: 30px;
+  }
+
+
