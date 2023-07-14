@@ -41,13 +41,13 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                z-index: -1; /* Set the video to a lower z-index */
+                z-index: -2; /* Set the video to a lower z-index */
             }
         
 
             .switching-text span {
                 position: relative;
-                z-index: 1; /* Set the text to a higher z-index */
+                z-index: -1; /* Set the text to a higher z-index */
             }
 
 
@@ -58,13 +58,8 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                z-index: -1; /* Set the video to a lower z-index */
+                z-index: -2; /* Set the video to a lower z-index */
             }
-
-
-
-
-
             
             .div-container {
               display: flex;
@@ -73,23 +68,20 @@
              
             }
 
-   
-
 
              .event {
               width: 380px; /* Fixed width for the divs */
-              height: 390px; /* Fixed height for the divs */
+              height: 660px; /* Fixed height for the divs */
               padding: 20px;
+              margin-bottom: 30px;
               
               border-radius: 10px; /* round edges */
-
               background-color: rgb(218, 240, 212);
 
               text-align: center;/* text style in the div */
               font-family:Verdana, Geneva, Tahoma, sans-serif;
 
               z-index: 1;
-
               position: relative;
             }
 
@@ -101,7 +93,9 @@
                 top: 0;
                 left: 0;
                 width: 380px; /* Fixed width for the divs */
-                height: 290px; /* Fixed height for the divs */
+                height: 450px;
+                border-radius: 10px;
+               
                 padding: 20px;
                 z-index: 2;
             }
@@ -131,8 +125,6 @@
                 color: white;
                 border:0px; 
                 border-radius: 10px; /* round edges */
-
-
             }
 
             .countdown {
@@ -162,6 +154,7 @@
                 font-size: 14px;
                 color: #666;
             }
+
 
         </style>
 
@@ -204,14 +197,6 @@
             moreDetailsDiv.style.display = "none"; 
             }
         }
-
-      
-  
-  
- 
-
-        
-
       </script>
     
     <script>
@@ -246,6 +231,9 @@
             <span class="span2">Why and how to recycle</span><br><br>
             <span class="span3">29.6.2023 ,18:00,   ruppin center</span>
 
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <br>
