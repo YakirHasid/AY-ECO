@@ -135,6 +135,10 @@
         </script>
 
         <div id="recyclingFormContainer">
+            <h1>Act now, and start recylcing!</h1>
+            <p></p>
+            <h2>Recycle Electronic Product Form:</h2>
+            <br>
             <form>
                 <p>
                     <label>Full Name: <input type="text" name="nameField" id="nameField"></label>
@@ -172,14 +176,18 @@
 
                 <p><fieldset><legend>Self Dropout</legend>
                     <p>
-                        <label> Yes 
-                            <input type="radio" name="collectionAddressField" value="yes">                    
+                        &nbsp;&nbsp;
+                        <label>
+                            <input type="radio" name="collectionAddressField" value="yes">   
+                            Yes                 
                         </label>
                     </p>
                     
                     <p>
-                        <label> No
-                            <input type="radio" name="collectionAddressField" value="no">                    
+                        &nbsp;&nbsp;
+                        <label> 
+                            <input type="radio" name="collectionAddressField" value="no">    
+                            No                
                         </label>
                     </p>
                 </fieldset></p>
@@ -232,9 +240,9 @@
                 </script>
 
                 <p>
-                    <label> Weight
-                        <input type="range" name="weightField" id="weightField" min="0" max="1000">
-                        <p>Value: <output id="weightValue"></output></p>
+                    <label> Weight of Products:
+                        <input type="range" name="weightField" id="weightField" min="0" max="1000" step="0.01">&nbsp;&nbsp;&nbsp:
+                        <span>Value: <output id="weightValue"></output></span>
                     </label>
                 </p>
 
@@ -251,9 +259,9 @@
                     <label> Purchase Date
                         <input type="date" name="dateField" id="dateField">                        
                     </label>
-                </p>                
 
-                <p>
+                    &nbsp;&nbsp;
+
                     <label> Purchase Time
                         <input type="time" name="timeField" id="timeField">                        
                     </label>
@@ -269,25 +277,52 @@
                 <!-- TODO: Finish this -->
                 <p><fieldset><legend>Product Status</legend>
                     <p>
-                        <label> Broken 
+                        <label>
+                            &nbsp;&nbsp; 
                             <input type="checkbox" value="Broken">                    
+                            Hazardous Substances 
                         </label>
-                    </p>
-                    
-                    <p>
-                        <label> Flamable
-                            <input type="checkbox" value="Flamable">                    
-                        </label>
-                    </p>
 
-                    <p>
-                        <label> Flamable
-                            <input type="checkbox" value="Flamable">                    
+                        &nbsp;&nbsp;
+
+                        <label> 
+                            <input type="checkbox" value="Flamable">   
+                            Flamable                 
+                        </label>
+
+                    <br>
+
+                        <label> 
+                            &nbsp;&nbsp;
+                            <input type="checkbox" value="Hazardous Substances">                    
+                            Contains Plastic
+                        </label>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label> 
+                            <input type="checkbox" value="Contains Plastic">                    
+                            Broken
                         </label>
                     </p>
 
                 </fieldset></p>
                 
+                <p>
+                    <label> Reason of Recycling :
+                        <textarea name="reasonField" id="reasonField" cols="30" rows="3"></textarea>
+                    </label>
+                </p>
+
+                <p>
+                    <label> Upload Product Image :
+                        <input type="file" name="fileToUploadField" id="fileToUploadField">
+                    </label>
+                </p>
+               
+                <p id="submitFieldContainer">
+                    <input type="submit" value="submit" name="submitField" id="submitField">
+                </p>
             </form>
         </div>
     </body>
