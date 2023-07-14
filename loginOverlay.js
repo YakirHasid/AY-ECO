@@ -47,8 +47,15 @@ function loadLoginOverlay() {
         label.innerText = fieldNamesArr[field];
         
         let input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.setAttribute("name", field);
+
+        if(field == "Password") {
+            input.setAttribute("type", "password");
+        }
+        else {
+            input.setAttribute("type", "text");
+        }    
+            
+        input.setAttribute("name", field); 
         input.pattern = ".{1,}";
         input.required = true;
 
