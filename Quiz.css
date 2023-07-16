@@ -1,0 +1,57 @@
+
+body{    
+    text-align: center;
+}
+
+#tableContainer{
+
+    margin: auto;
+    padding: auto;
+
+    background-color:rgb(162, 227, 162);
+    border: 1px solid black;
+    border-collapse: collapse; 
+    
+
+
+    font-size: xx-large;
+    margin-bottom: 50px;
+}
+
+p {
+    font-weight: bold;
+    padding: auto;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    font-size: large;
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    border: 1px solid black;
+    text-align: left;
+    padding: 10px;
+}
+
+td img {
+    margin: auto;
+    width: 150px;
+    height: 75px;
+}
+
+select {
+    background-color: green;
+}
+
+input {     
+    font-size: xx-large;
+    margin-bottom: 100px;
+    padding: 7px;
+}
+
+h1 {
+    font-size: 4em;
+}
