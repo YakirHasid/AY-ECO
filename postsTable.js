@@ -31,6 +31,33 @@ function createPostsTable() {
     headerRow.appendChild(th5);
 }
 
+function promptUser() {
+    let answer = window.prompt("Please enter the username to get how much posts they posted", "AY-ECO");
+
+    if(answer != null){
+        NumOfPostsByUser(answer);
+    }
+}
+
+function NumOfPostsByUser(username) {
+    // Send the form data to the PHP script using AJAX
+    $.ajax({
+        type: 'GET',
+        url: 'NumOfPostsByUserScript.php',
+        data: {'username': username},
+        success: function(response) {
+            // Handle the response from the server
+            numOfPosts = JSON.parse(response)['COUNT(id)'];             
+            alert(`Number of posts by ${username} is ${numOfPosts}`);          
+
+            console.log(response);
+        },
+        error: function(error) {
+            console.log('An error occurred: ' + error);
+        }            
+    });                   
+}
+
 function loadPosts() {
     // Send the form data to the PHP script using AJAX
     $.ajax({
