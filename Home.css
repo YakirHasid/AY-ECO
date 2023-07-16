@@ -65,5 +65,15 @@ body {
     font-weight: bold;
   }
   
+  #TextEmailNewsletter{
+    padding: 7 7 7 7;
+    font-size: large;
+    border: solid;
+  }
 
-
+  #SubmitEmailNewsletter{
+    background-color: black;
+    color: #fff;
+    padding: 7 7 7 7;
+    font-weight: bold;
+  }
