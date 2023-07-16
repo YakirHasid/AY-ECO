@@ -103,6 +103,21 @@ function initPosts(posts) {
 
         spanHeart.classList.add("like-btn");
 
+        $.ajax({
+            type: 'GET',
+            url: 'likesCount.php',
+            data: {
+                'postId' : post.Id
+            },
+            success: function(response) {            
+                spanHeart.innerText = JSON.parse(response)['COUNT(username)'];
+                console.log(response);
+            },
+            error: function(error) {
+                console.log('An error occurred: ' + error);
+            }            
+        });
+
         spanHeart.setAttribute('onclick', "clickHeart(this)");
 
         tdLike.appendChild(spanHeart);
