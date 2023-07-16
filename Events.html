@@ -41,15 +41,14 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                z-index: -1; /* Set the video to a lower z-index */
+                z-index: -2; /* Set the video to a lower z-index */
             }
         
 
             .switching-text span {
                 position: relative;
-                z-index: 1; /* Set the text to a higher z-index */
+                z-index: -1; /* Set the text to a higher z-index */
             }
-
 
             .switching-text video {
                 position: absolute; /* Make the video cover the entire div */
@@ -58,13 +57,8 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                z-index: -1; /* Set the video to a lower z-index */
+                z-index: -2; /* Set the video to a lower z-index */
             }
-
-
-
-
-
             
             .div-container {
               display: flex;
@@ -73,23 +67,19 @@
              
             }
 
-   
-
-
              .event {
               width: 380px; /* Fixed width for the divs */
-              height: 390px; /* Fixed height for the divs */
+              height: 660px; /* Fixed height for the divs */
               padding: 20px;
+              margin-bottom: 30px;
               
               border-radius: 10px; /* round edges */
-
               background-color: rgb(218, 240, 212);
 
               text-align: center;/* text style in the div */
               font-family:Verdana, Geneva, Tahoma, sans-serif;
 
-              z-index: 1;
-
+              
               position: relative;
             }
 
@@ -101,11 +91,12 @@
                 top: 0;
                 left: 0;
                 width: 380px; /* Fixed width for the divs */
-                height: 290px; /* Fixed height for the divs */
+                height: 450px;
+                border-radius: 10px;
+               
                 padding: 20px;
                 z-index: 2;
             }
-
 
             .span1{
                 font-size: 40px;
@@ -131,8 +122,6 @@
                 color: white;
                 border:0px; 
                 border-radius: 10px; /* round edges */
-
-
             }
 
             .countdown {
