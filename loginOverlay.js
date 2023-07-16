@@ -75,7 +75,7 @@ function loadLoginOverlay() {
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Login");
     submitBtn.setAttribute("name", "submit")
-    submitBtn.setAttribute("id", "submit")
+    submitBtn.setAttribute("id", "submitLogin")
 
     //create failed response container
     let failedContainer = document.createElement("div");

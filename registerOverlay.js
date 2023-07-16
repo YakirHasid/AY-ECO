@@ -70,7 +70,7 @@ function loadRegisterOverlay() {
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Register");
     submitBtn.setAttribute("name", "submit")
-    submitBtn.setAttribute("id", "submit")
+    submitBtn.setAttribute("id", "submitRegister")
 
     //create failed response container
     let failedContainer = document.createElement("div");
