@@ -47,7 +47,7 @@ function createPostForm() {
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Post");
     submitBtn.setAttribute("name", "submit")
-    submitBtn.setAttribute("id", "submit")
+    submitBtn.setAttribute("id", "submitPost")
 
     //create failed response container
     let failedContainer = document.createElement("div");
