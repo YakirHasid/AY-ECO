@@ -17,7 +17,7 @@
 }
 
 .c-caption {
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
 body{
@@ -40,4 +40,14 @@ body{
     background-color: rgb(207,23,23);
     border-radius: 50%;
     display: inline-block;
+}
+
+.text-muted {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: grey;
+}
+
+#newsTickerHeader {
+    text-align: center;
 }
