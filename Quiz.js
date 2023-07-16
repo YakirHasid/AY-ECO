@@ -19,17 +19,11 @@ $(document).ready(function() {
                     this.quizQ5.value
                 ]
             },  
-            /*          
-            data: {
-                'quizQ1' : this.quizQ1.value,
-                'quizQ2' : this.quizQ2.value,
-                'quizQ3' : this.quizQ3.value,
-                'quizQ4' : this.quizQ4.value,
-                'quizQ5' : this.quizQ5.value
-            },
-            */
+            
             success: function(response) {
+                console.log(response);
 
+                alert(response);
             },
             error: function(error) {
                 console.log('An error occurred: ' + error);
