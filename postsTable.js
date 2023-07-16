@@ -99,9 +99,72 @@ function initPosts(posts) {
         postDiv.innerText = post.text;
         tdDate.innerText = post.post_date;
 
-        let img = document.createElement("img");
-        img.setAttribute("src", "twitter-heart.png");
+        let spanHeart = document.createElement("span");
 
-        tdLike.appendChild(img);
+        spanHeart.classList.add("like-btn");
+
+        spanHeart.setAttribute('onclick', "clickHeart(this)");
+
+        tdLike.appendChild(spanHeart);
     });    
+}
+
+function clickHeart(el) {    
+
+    // handle client-side like
+    el.classList.toggle('is-active');    
+
+    // handle server-side like
+    let username = localStorage.getItem('username');
+    let postId = el.parentElement.parentElement.getElementsByTagName('td')[0].innerText;
+
+    if(el.classList.contains('is-active')) {
+        likePost(username, postId);        
+    }
+    else {
+        dislikePost(username, postId);
+    }
+}
+
+function setHeart(el) {
+    el.classList.add('is-active')
+}
+
+
+function remHeart(el) {
+    el.classList.remove('is-active')
+}
+
+function likePost(username, postId) {
+    $.ajax({
+        type: 'POST',
+        url: 'likePostScript.php',
+        data: {
+            'username' : username,
+            'postId' : postId
+        },
+        success: function(response) {            
+            console.log(response);
+        },
+        error: function(error) {
+            console.log('An error occurred: ' + error);
+        }            
+    });
+}
+
+function dislikePost(username, postId) {
+    $.ajax({
+        type: 'POST',
+        url: 'dislikePostScript.php',
+        data: {
+            'username' : username,
+            'postId' : postId
+        },
+        success: function(response) {            
+            console.log(response);
+        },
+        error: function(error) {
+            console.log('An error occurred: ' + error);
+        }            
+    });
 }
