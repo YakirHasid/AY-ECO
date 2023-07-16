@@ -2,6 +2,10 @@
 function createPostForm() {
 
     let divPostContainer = document.getElementById("publishPostContainer");
+    let postHeader = document.createElement("h3");
+    postHeader.innerText= "Join the talks!"
+
+    divPostContainer.appendChild(postHeader);
 
     let divFormContainer = document.createElement("div");
     divFormContainer.classList.add("form_container");
@@ -26,7 +30,8 @@ function createPostForm() {
         label.innerText = fieldNamesArr[field];
         
         let input = document.createElement("input");
-        input.setAttribute("type", "text");
+        input.setAttribute("type", "textarea");
+        input.setAttribute("placeholder", "Share your thoughts with AY-ECO community");
         input.setAttribute("name", field);                
         input.pattern = ".{1,}";
         input.required = true;
