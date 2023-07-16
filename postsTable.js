@@ -118,6 +118,27 @@ function initPosts(posts) {
             }            
         });
 
+        $.ajax({
+            type: 'GET',
+            url: 'isLikedByUser.php',
+            data: {
+                'username': localStorage.getItem('username'),
+                'postId' : post.Id
+            },
+            success: function(response) {            
+                let answer = JSON.parse(response);
+
+                if(answer != null) {
+                    setHeart(spanHeart);
+                }
+                
+                console.log(response);
+            },
+            error: function(error) {
+                console.log('An error occurred: ' + error);
+            }            
+        });
+
         spanHeart.setAttribute('onclick', "clickHeart(this)");
 
         tdLike.appendChild(spanHeart);
@@ -133,11 +154,15 @@ function clickHeart(el) {
     let username = localStorage.getItem('username');
     let postId = el.parentElement.parentElement.getElementsByTagName('td')[0].innerText;
 
+    let likesCount = parseInt(el.innerText);
+
     if(el.classList.contains('is-active')) {
-        likePost(username, postId);        
+        likePost(username, postId); 
+        el.innerText = likesCount+1;       
     }
     else {
         dislikePost(username, postId);
+        el.innerText = likesCount-1;
     }
 }
 
