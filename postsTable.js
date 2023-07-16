@@ -1,0 +1,107 @@
+function createPostsTable() {
+    let postsContainer = document.getElementById("postsContainer");
+
+    let table = document.createElement("table");
+    table.setAttribute("id", "postsTable");
+
+    let headerRow = document.createElement("tr");
+
+    let th1 = document.createElement("th");
+    let th2 = document.createElement("th");
+    let th3 = document.createElement("th");
+    let th4 = document.createElement("th");
+    let th5 = document.createElement("th");
+
+    th1.innerText = "Post No.";
+    th2.innerText = "Posted By"
+    th3.innerText = "Post";
+    th4.innerText = "Date";
+    th5.innerText = "Like";
+
+    th3.setAttribute("id", "postsHeader");
+
+    postsContainer.appendChild(table);
+
+    table.appendChild(headerRow);
+
+    headerRow.appendChild(th1);
+    headerRow.appendChild(th2);
+    headerRow.appendChild(th3);
+    headerRow.appendChild(th4);
+    headerRow.appendChild(th5);
+}
+
+function loadPosts() {
+    // Send the form data to the PHP script using AJAX
+    $.ajax({
+        type: 'GET',
+        url: 'loadPostsScript.php',
+        //data: formData,
+        success: function(response) {
+            // Handle the response from the server
+            posts = JSON.parse(response);             
+            initPosts(posts);             
+        },
+        error: function(error) {
+            console.log('An error occurred: ' + error);
+        }            
+    });                   
+}
+
+function initPosts(posts) {
+    console.log(posts)
+
+    //get the Post container
+    let postsContainer = document.getElementById("postsContainer");
+
+    //init the container by remove its html
+    postsContainer.innerHTML = "";
+
+    //create the post table
+    createPostsTable();
+
+    //get the post table
+    let table = document.getElementById("postsTable");
+
+    posts.forEach(post => {        
+        console.log(post);
+
+        //create a new row in the table for each post
+        let tr = document.createElement("tr");
+        tr.classList.add("postRow");
+
+        table.appendChild(tr);
+
+        let tdPostNo = document.createElement("td");
+        let tdPostedBy = document.createElement("td");
+        let tdPost = document.createElement("td");
+        let tdDate = document.createElement("td");
+        let tdLike = document.createElement("td");
+
+        let postDiv = document.createElement("div");
+
+        postDiv.classList.add("postDiv");
+
+        tdPost.appendChild(postDiv);
+
+        tdPostNo.classList.add("centeredHeader");
+        tdPostedBy.classList.add("centeredHeader");
+        tdLike.classList.add("centeredHeader");
+
+        tr.appendChild(tdPostNo);
+        tr.appendChild(tdPostedBy);
+        tr.appendChild(tdPost);
+        tr.appendChild(tdDate);
+        tr.appendChild(tdLike);
+
+        tdPostNo.innerText = post.Id;
+        tdPostedBy.innerText = post.username;
+        postDiv.innerText = post.text;
+        tdDate.innerText = post.post_date;
+
+        let img = document.createElement("img");
+        img.setAttribute("src", "twitter-heart.png");
+
+        tdLike.appendChild(img);
+    });    
+}
