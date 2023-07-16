@@ -51,8 +51,23 @@ function createPostForm() {
     let submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Post");
-    submitBtn.setAttribute("name", "submit")
-    submitBtn.setAttribute("id", "submitPost")
+    submitBtn.setAttribute("name", "submit");
+    submitBtn.setAttribute("id", "submitPost");
+
+    submitBtn.classList.add("smallerBtn");
+
+    let divSearchBtn = document.createElement("div");
+    divSearchBtn.classList.add("btn");
+
+    let searchBtn = document.createElement("input");
+    searchBtn.setAttribute("type", "button");
+    searchBtn.setAttribute("value", "Search Post By Username");
+    searchBtn.setAttribute("name", "Search");
+    searchBtn.setAttribute("id", "searchPost");
+
+    searchBtn.classList.add("smallerBtn");
+
+    searchBtn.setAttribute("onclick", "promptUser()");
 
     //create failed response container
     let failedContainer = document.createElement("div");
@@ -65,8 +80,10 @@ function createPostForm() {
 
 
     divBtn.appendChild(submitBtn);
+    divSearchBtn.appendChild(searchBtn);
 
     form.appendChild(divBtn);
+    form.appendChild(divSearchBtn);
 
     divFormContainer.appendChild(form);
     
