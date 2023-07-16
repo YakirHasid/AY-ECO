@@ -1,13 +1,8 @@
-let HOME_NAME = "Home"
-let NEWS_NAME = "News"
-let CONTACT_NAME = "Contact"
-let ABOUT_NAME = "About"
-
 // arr that contains names of pages in the website
 // that each page will be added to the topnav
 // with inner text of the web page itself
 // and link to the website itself
-let pageNameArr = ["Home", "News", "LifeStyle", "Events", "Store", "Community Feed"]
+let pageNameArr = ["Home", "News", "LifeStyle", "Events", "Store", "Community Feed", "Quiz"]
 
 function topnavLoader(curPage) {
 
