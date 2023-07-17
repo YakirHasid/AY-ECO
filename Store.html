@@ -482,7 +482,16 @@
         }
     
         function initUserCartItems(cartItems) {
-            console.log(cartItems);
+
+          // for each item in the cart items to be added
+          for(let item of cartItems) {
+
+            // add the correct number of the item according to the given quantity
+            for(let i = 0; i < item.quantity; i++) {
+                addItemToCartById(item.productId);
+            }
+          }
+
         }
     </script>
     
