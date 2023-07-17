@@ -166,7 +166,11 @@
               // check if a user is logged in
               if(!isLoggedAlert()) {
                 return false;
-              }                  
+              }
+              
+              makePurchase();  
+              
+              initMyCart();
               
             });
 
@@ -370,7 +374,7 @@
             });                                   
         }
 
-        function updateTotalPrice() {
+        function calcTotalPrice() {
           let myCartItems = document.getElementsByClassName("ItemInCart");
 
           let sum = 0;
@@ -382,9 +386,15 @@
             numOfUnits = parseInt(item.getElementsByTagName("input")[0].value);
             sum += unitPrice*numOfUnits;
           }
+
+          return sum;
+        }
+        
+        function updateTotalPrice() {
+          let totalPrice = calcTotalPrice();
           
           let totalElm = document.getElementById("myCartTotalVal");
-          totalElm.innerText = sum.toFixed(2) + " NIS";
+          totalElm.innerText = totalPrice.toFixed(2) + " NIS";
         }
 
         function incCounter(counterEl) {          
@@ -420,6 +430,10 @@
           }
 
           return false;
+        }
+        
+        function makePurchase() {
+          let totalPrice = 
         }
     </script>
     
