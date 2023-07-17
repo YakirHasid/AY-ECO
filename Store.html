@@ -40,6 +40,11 @@
            this.price = price;
         }
 
+        function UserCartItem(productId, quantity) {
+          this.productId = productId;
+          this.quantity = quantity;
+        }
+
         function loadProducts() {
             // Send the form data to the PHP script using AJAX
             $.ajax({
