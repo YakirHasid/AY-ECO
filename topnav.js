@@ -110,6 +110,12 @@ function logoutfunc(){
     localStorage.removeItem('username');
 }
 
+function isLogged() {
+    if(localStorage.getItem('username') != null)
+        return true;
+    return false;    
+}
+
 $(document).ready(function(){
     $('#topnavLogout').click(function(){
     localStorage.removeItem('username');
