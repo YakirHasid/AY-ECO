@@ -441,8 +441,8 @@
         function emptyCart() {
           let myCartItems = document.getElementsByClassName("ItemInCart");
 
-          for(let item of myCartItems) {
-            removeItemFromCart(item);
+          while(myCartItems.length > 0) {
+            removeItemFromCart(myCartItems[0]);
           }
 
           updateCart();
