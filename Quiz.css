@@ -1,5 +1,5 @@
 
-body{    
+#quizContainer {    
     text-align: center;
 }
 
@@ -18,7 +18,7 @@ body{
     margin-bottom: 50px;
 }
 
-p {
+#quizIntro {
     font-weight: bold;
     padding: auto;
     padding-top: 30px;
@@ -46,12 +46,12 @@ select {
     background-color: green;
 }
 
-input {     
+#submitQuiz {     
     font-size: xx-large;
     margin-bottom: 100px;
     padding: 7px;
 }
 
-h1 {
+#quizHeader {
     font-size: 4em;
 }
