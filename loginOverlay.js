@@ -142,6 +142,8 @@ $(document).ready(function() {
                 
                 localStorage.setItem('username', answer['username']);
                 // You can show a success message or perform other actions here
+
+                location.reload();
             },
             error: function(error) {
                 console.log('An error occurred: ' + error);

@@ -144,27 +144,29 @@ function initPosts(posts) {
                 console.log('An error occurred: ' + error);
             }            
         });
+        
+        if(isLogged()) {
+            $.ajax({
+                type: 'GET',
+                url: 'isLikedByUser.php',
+                data: {
+                    'username': localStorage.getItem('username'),
+                    'postId' : post.Id
+                },
+                success: function(response) {            
+                    let answer = JSON.parse(response);
 
-        $.ajax({
-            type: 'GET',
-            url: 'isLikedByUser.php',
-            data: {
-                'username': localStorage.getItem('username'),
-                'postId' : post.Id
-            },
-            success: function(response) {            
-                let answer = JSON.parse(response);
-
-                if(answer != null) {
-                    setHeart(spanHeart);
-                }
-                
-                console.log(response);
-            },
-            error: function(error) {
-                console.log('An error occurred: ' + error);
-            }            
-        });
+                    if(answer != null) {
+                        setHeart(spanHeart);
+                    }
+                    
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });
+        }
 
         spanHeart.setAttribute('onclick', "clickHeart(this)");
 
@@ -172,7 +174,11 @@ function initPosts(posts) {
     });    
 }
 
-function clickHeart(el) {    
+function clickHeart(el) {
+    
+    if(!isLoggedAlert()) {
+        return false;
+    }
 
     // handle client-side like
     el.classList.toggle('is-active');    

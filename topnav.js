@@ -105,14 +105,34 @@ function togglelogged(){
     usernameBtn.classList.toggle("hidden");
 }
 
-function logoutfunc(){
+function logoutUser(){
+
+    if(!isLogged()) {
+        return false;
+    }
 
     localStorage.removeItem('username');
+    location.reload();
+    return true;
+}
+
+function isLogged() {
+    if(localStorage.getItem('username') != null)
+        return true;
+    return false;    
+}
+
+function isLoggedAlert() {
+    if(isLogged())        
+        return true;
+
+    alert("Please login before doing this action");
+    return false;    
 }
 
 $(document).ready(function(){
     $('#topnavLogout').click(function(){
-    localStorage.removeItem('username');
+    logoutUser();
     togglelogged();
     });
 }); 

@@ -105,6 +105,11 @@
                 curCardBtn.innerText = "Add To Cart";
                 curCardBtn.setAttribute("value", product.ID);
                 curCardBtn.addEventListener('click', function() {
+                    // check if a user is logged in
+                    if(!isLoggedAlert()) {
+                      return false;
+                    }
+
                     let myCartItems = document.getElementById("myCartItems");
 
                     let curId = this.getAttribute("value");
@@ -238,6 +243,14 @@
             myCartCheckoutBtn.classList.add("btn");
             myCartCheckoutBtn.classList.add("btn-primary");
             myCartCheckoutBtn.innerText = "Checkout";
+            myCartCheckoutBtn.addEventListener('click', function (){
+              
+              // check if a user is logged in
+              if(!isLoggedAlert()) {
+                return false;
+              }                  
+              
+            });
 
             let myCartTotalDiv = document.createElement("div");
             myCartTotalDiv.setAttribute("id", "myCartTotalDiv");
