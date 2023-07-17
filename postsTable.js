@@ -174,7 +174,11 @@ function initPosts(posts) {
     });    
 }
 
-function clickHeart(el) {    
+function clickHeart(el) {
+    
+    if(!isLoggedAlert) {
+        return false;
+    }
 
     // handle client-side like
     el.classList.toggle('is-active');    
