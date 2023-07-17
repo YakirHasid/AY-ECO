@@ -98,6 +98,11 @@ $(document).ready(function() {
         // Prevent the default form submission
         event.preventDefault();
 
+        // check if a user is logged in
+        if(!isLoggedAlert()) {
+            return false;
+            }
+
         // Specific form field
         var formData = {
         Username: localStorage.getItem('username'),
