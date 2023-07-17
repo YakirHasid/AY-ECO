@@ -468,7 +468,7 @@
             $.ajax({
                 type: 'GET',
                 url: 'loadUserCartItemsScript.php',
-                //data: formData,
+                data: {'username' : localStorage.getItem('username')},
                 success: function(response) {
                     // Handle the response from the server
                     cartItems = JSON.parse(response);             
