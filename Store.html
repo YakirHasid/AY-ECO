@@ -70,6 +70,10 @@
 
             initMyCart();
 
+            if(isLogged()) {
+              loadUserCartItems();
+            }
+
             let curRow = document.createElement("div");
             curRow.classList.add("row");                       
 
@@ -457,6 +461,28 @@
           }
 
           updateCart();
+        }
+        
+        function loadUserCartItems() {
+            // Send the form data to the PHP script using AJAX
+            $.ajax({
+                type: 'GET',
+                url: 'loadUserCartItemsScript.php',
+                //data: formData,
+                success: function(response) {
+                    // Handle the response from the server
+                    cartItems = JSON.parse(response);             
+                    initUserCartItems(cartItems);             
+                    // You can show a success message or perform other actions here
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });            
+        }
+    
+        function initUserCartItems(cartItems) {
+            console.log(cartItems);
         }
     </script>
     
