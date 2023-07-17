@@ -75,7 +75,7 @@ function loadRegisterOverlay() {
     //create failed response container
     let failedContainer = document.createElement("div");
     let failedMessage = document.createElement("p");
-    failedMessage.setAttribute("id", "failedMessage");
+    failedMessage.setAttribute("id", "failedRegisterMessage");
     failedMessage.setAttribute("style", "color:red;text-align :center");
     
 
@@ -115,7 +115,7 @@ $(document).ready(function() {
 
                 let answer = JSON.parse(response);
                 //cheack if response is not  ok
-                let failedMessage = document.getElementById("failedMessage");
+                let failedMessage = document.getElementById("failedRegisterMessage");
 
                 if(answer["message"]!="New record created successfully")
                 {
