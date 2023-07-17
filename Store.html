@@ -170,7 +170,7 @@
               
               makePurchase();  
               
-              initMyCart();
+              emptyCart();
               
             });
 
@@ -436,6 +436,16 @@
           let totalPrice = calcTotalPrice();
 
           alert(`Successfully made a purchase for ${localStorage.getItem('username')} for the total price of ${totalPrice} NIS`);
+        }
+        
+        function emptyCart() {
+          let myCartItems = document.getElementsByClassName("ItemInCart");
+
+          for(let item of myCartItems) {
+            removeItemFromCart(item);
+          }
+
+          updateCart();
         }
     </script>
     
