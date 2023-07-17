@@ -104,6 +104,7 @@
                 curCardBtn.classList.add("btn-primary");
                 curCardBtn.innerText = "Add To Cart";
                 curCardBtn.setAttribute("value", product.ID);
+                curCardBtn.setAttribute("id", `purchaseProductId${product.ID}`);
                 curCardBtn.addEventListener('click', function() {
                     // check if a user is logged in
                     if(!isLoggedAlert()) {
@@ -218,6 +219,11 @@
             myCartDiv.appendChild(myCartBody);
 
             myCartContainer.appendChild(myCartDiv);
+        }
+
+        function addItemToCartById(productId) {
+          let el = document.getElementById(`purchaseProductId${productId}`);
+          addItemToCart(el);
         }
 
         function addItemToCart(addedItem) {
