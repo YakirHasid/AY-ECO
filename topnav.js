@@ -116,6 +116,14 @@ function isLogged() {
     return false;    
 }
 
+function isLoggedAlert() {
+    if(isLogged())        
+        return true;
+
+    alert("Please login before doing this action");
+    return false;    
+}
+
 $(document).ready(function(){
     $('#topnavLogout').click(function(){
     localStorage.removeItem('username');
