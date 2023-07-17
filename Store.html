@@ -105,6 +105,11 @@
                 curCardBtn.innerText = "Add To Cart";
                 curCardBtn.setAttribute("value", product.ID);
                 curCardBtn.addEventListener('click', function() {
+                    // check if a user is logged in
+                    if(!isLoggedAlert()) {
+                      return false;
+                    }
+
                     let myCartItems = document.getElementById("myCartItems");
 
                     let curId = this.getAttribute("value");
