@@ -176,7 +176,7 @@ function initPosts(posts) {
 
 function clickHeart(el) {
     
-    if(!isLoggedAlert) {
+    if(!isLoggedAlert()) {
         return false;
     }
 
