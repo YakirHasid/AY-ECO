@@ -108,6 +108,7 @@ function togglelogged(){
 function logoutfunc(){
 
     localStorage.removeItem('username');
+    location.reload();
 }
 
 function isLogged() {
