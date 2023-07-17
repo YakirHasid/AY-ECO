@@ -386,15 +386,15 @@
             numOfUnits = parseInt(item.getElementsByTagName("input")[0].value);
             sum += unitPrice*numOfUnits;
           }
-
-          return sum;
+          
+          return sum.toFixed(2);
         }
         
         function updateTotalPrice() {
           let totalPrice = calcTotalPrice();
           
           let totalElm = document.getElementById("myCartTotalVal");
-          totalElm.innerText = totalPrice.toFixed(2) + " NIS";
+          totalElm.innerText = totalPrice + " NIS";
         }
 
         function incCounter(counterEl) {          
@@ -433,7 +433,10 @@
         }
         
         function makePurchase() {
-          let totalPrice = 
+          let totalPrice = calcTotalPrice();
+
+          alert(`Successfully made a purchase for ${localStorage.getItem('username')} 
+                 for the total price of ${totalPrice}`);
         }
     </script>
     
