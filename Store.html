@@ -40,6 +40,11 @@
            this.price = price;
         }
 
+        function UserCartItem(productId, quantity) {
+          this.productId = productId;
+          this.quantity = quantity;
+        }
+
         function loadProducts() {
             // Send the form data to the PHP script using AJAX
             $.ajax({
@@ -64,6 +69,10 @@
             let counter = 0;
 
             initMyCart();
+
+            if(isLogged()) {
+              loadUserCartItems();
+            }
 
             let curRow = document.createElement("div");
             curRow.classList.add("row");                       
@@ -104,95 +113,14 @@
                 curCardBtn.classList.add("btn-primary");
                 curCardBtn.innerText = "Add To Cart";
                 curCardBtn.setAttribute("value", product.ID);
+                curCardBtn.setAttribute("id", `purchaseProductId${product.ID}`);
                 curCardBtn.addEventListener('click', function() {
                     // check if a user is logged in
                     if(!isLoggedAlert()) {
                       return false;
                     }
 
-                    let myCartItems = document.getElementById("myCartItems");
-
-                    let curId = this.getAttribute("value");
-
-                    let item = alreadyInCart(curId);                    
-
-                    if(item) {
-                      let counterEl = item.getElementsByTagName("input")[0];
-                      incCounter(counterEl);
-                      return;
-                    }
-
-                    let curItem = document.createElement("div");
-                    curItem.classList.add("ItemInCart");
-                    curItem.value = curId;
-
-                    console.log(this);
-                    console.log(this.getAttribute("value"));
-
-                    // prepare database item
-                    let itemTitleVal = this.parentNode.getElementsByTagName("h5")[0].innerText;
-                    let itemPriceVal = this.parentNode.getElementsByTagName("p")[1].innerText;
-
-                    let itemPlusBtn = document.createElement("button");
-                    itemPlusBtn.innerText = "+";                    
-                    // add event listener to plus
-                    itemPlusBtn.addEventListener("click", function () {
-
-                      let counterEl = this.parentNode.getElementsByTagName("input")[0];
-                      
-                      incCounter(counterEl);
-                        
-                    });
-
-                    let itemMinusBtn = document.createElement("button");
-                    itemMinusBtn.innerText = "-";
-                    // add event listener to minus
-                    itemMinusBtn.addEventListener("click", function () {                      
-                      let counterEl = this.parentNode.getElementsByTagName("input")[0];
-
-                      decCounter(counterEl)                      
-                    })                    
-
-                    let itemCounter = document.createElement("input");
-                    itemCounter.setAttribute("type", "text");
-                    itemCounter.value = "1";
-                    itemCounter.setAttribute("maxlength", "2");
-                    itemCounter.setAttribute("size", "2"); 
-                    //itemCounter.setAttribute("pattern", "[0-9]{1,2}");
-                    itemCounter.readOnly = true;
-                    // add event listener to counter (1-99)
-
-                    let itemRemoveBtn = document.createElement("button");
-                    itemRemoveBtn.innerText = "X";
-                    // add event listener to delete
-                    itemRemoveBtn.addEventListener("click", function () {                      
-                      // put remove function
-                      removeItemFromCart(this.parentNode);
-                      return;                      
-                      
-                    }) 
-
-                    // add item to correct cart database
-                    
-
-
-                    let itemTitle = document.createElement("h5");                    
-                    let itemPrice = document.createElement("p");
-
-                    itemTitle.innerText = itemTitleVal;
-                    itemPrice.innerText = itemPriceVal;
-                    itemPrice.style.display = "inline";                    
-                    
-                    curItem.appendChild(itemTitle);     
-                    curItem.appendChild(itemPlusBtn); 
-                    curItem.appendChild(itemCounter); 
-                    curItem.appendChild(itemMinusBtn); 
-                    curItem.appendChild(itemPrice); 
-                    curItem.appendChild(itemRemoveBtn);                
-
-                    myCartItems.appendChild(curItem);
-
-                    updateCart();
+                    addItemToCart(this);
                 });
 
                 curCardBody.appendChild(curCardTitle);
@@ -248,7 +176,11 @@
               // check if a user is logged in
               if(!isLoggedAlert()) {
                 return false;
-              }                  
+              }
+              
+              makePurchase();  
+              
+              emptyCart();
               
             });
 
@@ -296,6 +228,97 @@
             myCartDiv.appendChild(myCartBody);
 
             myCartContainer.appendChild(myCartDiv);
+        }
+
+        function addItemToCartById(productId) {
+          let el = document.getElementById(`purchaseProductId${productId}`);
+          addItemToCart(el);
+        }
+
+        function addItemToCart(addedItem) {
+          let myCartItems = document.getElementById("myCartItems");
+
+          let curId = addedItem.getAttribute("value");
+
+          let item = alreadyInCart(curId);                    
+
+          if(item) {
+            let counterEl = item.getElementsByTagName("input")[0];
+            incCounter(counterEl);
+            return;
+          }
+
+          let curItem = document.createElement("div");
+          curItem.classList.add("ItemInCart");
+          curItem.value = curId;
+
+          console.log(addedItem);
+          console.log(addedItem.getAttribute("value"));
+
+          // prepare database item
+          let itemTitleVal = addedItem.parentNode.getElementsByTagName("h5")[0].innerText;
+          let itemPriceVal = addedItem.parentNode.getElementsByTagName("p")[1].innerText;
+
+          let itemPlusBtn = document.createElement("button");
+          itemPlusBtn.innerText = "+";                    
+          // add event listener to plus
+          itemPlusBtn.addEventListener("click", function () {
+
+            let counterEl = this.parentNode.getElementsByTagName("input")[0];
+            
+            incCounter(counterEl);
+              
+          });
+
+          let itemMinusBtn = document.createElement("button");
+          itemMinusBtn.innerText = "-";
+          // add event listener to minus
+          itemMinusBtn.addEventListener("click", function () {                      
+            let counterEl = this.parentNode.getElementsByTagName("input")[0];
+
+            decCounter(counterEl)                      
+          })                    
+
+          let itemCounter = document.createElement("input");
+          itemCounter.setAttribute("type", "text");
+          itemCounter.value = "1";
+          itemCounter.setAttribute("maxlength", "2");
+          itemCounter.setAttribute("size", "2"); 
+          //itemCounter.setAttribute("pattern", "[0-9]{1,2}");
+          itemCounter.readOnly = true;
+          // add event listener to counter (1-99)
+
+          let itemRemoveBtn = document.createElement("button");
+          itemRemoveBtn.innerText = "X";
+          // add event listener to delete
+          itemRemoveBtn.addEventListener("click", function () {                      
+            // put remove function
+            removeItemFromCart(this.parentNode);
+            return;                      
+            
+          }) 
+
+          // add item to correct cart database
+
+
+
+          let itemTitle = document.createElement("h5");                    
+          let itemPrice = document.createElement("p");
+
+          itemTitle.innerText = itemTitleVal;
+          itemPrice.innerText = itemPriceVal;
+          itemPrice.style.display = "inline";                    
+
+          curItem.appendChild(itemTitle);     
+          curItem.appendChild(itemPlusBtn); 
+          curItem.appendChild(itemCounter); 
+          curItem.appendChild(itemMinusBtn); 
+          curItem.appendChild(itemPrice); 
+          curItem.appendChild(itemRemoveBtn);                
+
+          myCartItems.appendChild(curItem);
+
+          updateCart();          
         }
 
         function removeItemFromCart(el) {
@@ -366,7 +389,7 @@
             });                                   
         }
 
-        function updateTotalPrice() {
+        function calcTotalPrice() {
           let myCartItems = document.getElementsByClassName("ItemInCart");
 
           let sum = 0;
@@ -379,8 +402,14 @@
             sum += unitPrice*numOfUnits;
           }
           
+          return sum.toFixed(2);
+        }
+        
+        function updateTotalPrice() {
+          let totalPrice = calcTotalPrice();
+          
           let totalElm = document.getElementById("myCartTotalVal");
-          totalElm.innerText = sum.toFixed(2) + " NIS";
+          totalElm.innerText = totalPrice + " NIS";
         }
 
         function incCounter(counterEl) {          
@@ -416,6 +445,53 @@
           }
 
           return false;
+        }
+        
+        function makePurchase() {
+          let totalPrice = calcTotalPrice();
+
+          alert(`Successfully made a purchase for ${localStorage.getItem('username')} for the total price of ${totalPrice} NIS`);
+        }
+        
+        function emptyCart() {
+          let myCartItems = document.getElementsByClassName("ItemInCart");
+
+          while(myCartItems.length > 0) {
+            removeItemFromCart(myCartItems[0]);
+          }
+
+          updateCart();
+        }
+        
+        function loadUserCartItems() {
+            // Send the form data to the PHP script using AJAX
+            $.ajax({
+                type: 'GET',
+                url: 'loadUserCartItemsScript.php',
+                data: {'username' : localStorage.getItem('username')},
+                success: function(response) {
+                    // Handle the response from the server
+                    cartItems = JSON.parse(response);             
+                    initUserCartItems(cartItems);             
+                    // You can show a success message or perform other actions here
+                },
+                error: function(error) {
+                    console.log('An error occurred: ' + error);
+                }            
+            });            
+        }
+    
+        function initUserCartItems(cartItems) {
+
+          // for each item in the cart items to be added
+          for(let item of cartItems) {
+
+            // add the correct number of the item according to the given quantity
+            for(let i = 0; i < item.quantity; i++) {
+                addItemToCartById(item.productId);
+            }
+          }
+
         }
     </script>
     
