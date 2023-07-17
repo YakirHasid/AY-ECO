@@ -80,7 +80,7 @@ function loadLoginOverlay() {
     //create failed response container
     let failedContainer = document.createElement("div");
     let failedMessage = document.createElement("p");
-    failedMessage.setAttribute("id", "failedMessage");
+    failedMessage.setAttribute("id", "failedLoginMessage");
     failedMessage.setAttribute("style", "color:red;text-align :center");
     
 
@@ -119,7 +119,7 @@ $(document).ready(function() {
             data: formData,
             success: function(response) {
 
-                let failedMessage = document.getElementById("failedMessage");
+                let failedMessage = document.getElementById("failedLoginMessage");
        
                 if(response==""){
                     failedMessage.innerText="Incorrect username or password";
