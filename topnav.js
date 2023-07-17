@@ -105,10 +105,15 @@ function togglelogged(){
     usernameBtn.classList.toggle("hidden");
 }
 
-function logoutfunc(){
+function logoutUser(){
+
+    if(!isLogged()) {
+        return false;
+    }
 
     localStorage.removeItem('username');
     location.reload();
+    return true;
 }
 
 function isLogged() {
@@ -127,7 +132,7 @@ function isLoggedAlert() {
 
 $(document).ready(function(){
     $('#topnavLogout').click(function(){
-    localStorage.removeItem('username');
+    logoutUser();
     togglelogged();
     });
 }); 
