@@ -10,7 +10,9 @@
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     if($conn->connect_error) {
-        die("Connection failed: ". $conn->connect_error);
+        //die("Connection failed: ". $conn->connect_error);
+        echo NULL;
+        return;
     }
 
     $sql = "SELECT username FROM User U 
@@ -26,11 +28,11 @@
         }
         // no matching username and password was found
         else {
-            echo NULL;
+            echo NULL;            
         }
     }
     else {
-        echo NULL;
+        echo NULL;        
     }
 
     $conn->close();
