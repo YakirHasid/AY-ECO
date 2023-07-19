@@ -10,7 +10,7 @@
         die("Connection failed: ". $conn->connect_error);
     }
 
-    $sql = "SELECT Id,username,text,post_date FROM Post";
+    $sql = "SELECT Id,username,text,post_date FROM Post ORDER BY post_date DESC";
 
     $answer = $conn->query($sql);               
 
