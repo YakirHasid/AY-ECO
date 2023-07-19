@@ -130,10 +130,8 @@ $(document).ready(function() {
                 console.log(response);
                 $('#formPost')[0].reset(); // Reset the form fields
 
-                // TODO: clear all posts in the posts container
-
-                // TODO: load all posts from the database
-
+                // TODO: clear and load all posts from the database
+                loadPosts();
 
             },
             error: function(error) {
