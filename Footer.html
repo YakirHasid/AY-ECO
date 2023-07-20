@@ -8,6 +8,18 @@
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+     <link rel="stylesheet" href="topnav.css">
+     <link rel="stylesheet" href="Home.css">
+     <link rel="stylesheet" href="registerOverlay.css">
    </head>
 <body>
   <div class="container">
@@ -31,20 +43,33 @@
         <p>If you have any questions or you want to collaborate with us, send us a message!</p>
       <form action="#">
         <div class="input-box">
-          <input type="text" placeholder="Enter your name">
+          <input type="text" placeholder="Enter your name" id="nameContactUs">
         </div>
         <div class="input-box">
-          <input type="text" placeholder="Enter your email">
+          <input type="text" placeholder="Enter your email" id="emailContactUs">
         </div>
         <div class="input-box message-box">
-            <textarea placeholder="Enter your message"></textarea>
+            <textarea placeholder="Enter your message" id="messageContactUs"></textarea>
         </div>
         <div class="button">
-          <input type="button" value="Send Now" >
+          <input type="button" value="Send Now" id="sendContactUs" >
         </div>
       </form>
     </div>
     </div>
   </div>
+  <script>
+    $(document).ready(function() {
+      $("#sendContactUs").click(function()
+      {
+          let br = "%0D%0A";
+          let name = $("#nameContactUs").val();
+          let email = $("#emailContactUs").val();
+          let message = $("#messageContactUs").val();
+          window.location.href = `mailto:ralmog98@gmail.com?CC=hasidyakir@gmail.com&subject=AY-ECO: Contact Us (Response) From ${name} (${email})&body=Hey AY-ECO,${br}${br}${message}${br}${br}Thanks,${br}${name} (${email})`;
+          
+      });
+    });
+  </script>
 </body>
 </html>
