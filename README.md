@@ -71,5 +71,11 @@ Got any unused electronics? Use the Recycle Form to submit your items into recyc
 Current planed events and lectures!
 ![Events](https://github.com/YakirHasid/AY-ECO/assets/31670770/d08608c1-b6f3-4657-84bc-cbf29e2cddb4)
 
+## Store Page
+
+### Purchase Items
+
+We offer a wide variety of items you can purchase, those items are eco-friendly!
+![StorePurchase](https://github.com/YakirHasid/AY-ECO/assets/31670770/940c0933-38e9-45dd-b1f7-20ee5223d851)
 
 
