@@ -87,7 +87,13 @@ function loggedChecker() {
 
         togglelogged();
         let usernameBtn = document.getElementById("topnavUsername");
-        usernameBtn.innerText= "Hello "+ localStorage.getItem('username'); 
+
+        // usage of strings
+        var str1 = "Hello ";
+        var str2 = localStorage.getItem('username');
+        var str3 = str1.concat(str2);
+        
+        usernameBtn.innerText= str3; 
 
     }
  
