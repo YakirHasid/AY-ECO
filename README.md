@@ -41,3 +41,20 @@ News Scroll with all the latest articles about the climate crisis, for e.g. how 
 
 Stay up to date with the News Of The Day (**Remember:** We didn't say on which day!)
 ![NewsOfTheDay](https://github.com/YakirHasid/AY-ECO/assets/31670770/ab590a70-43eb-42a9-b9d7-bdd829abf2aa)
+
+## LifeStyle Page
+
+### Stickers
+
+A couple of helpful tips, neatly displayed in stickers!
+![Stickers](https://github.com/YakirHasid/AY-ECO/assets/31670770/11a8c842-4b6b-4409-b2e3-6088d407eb51)
+
+### Tailored Video
+
+A video that has been handpicked with our latest algorithm! (Math.random!)
+![TailoredVideo](https://github.com/YakirHasid/AY-ECO/assets/31670770/e5b8467f-9d51-4434-b5c1-b06c15f30393)
+
+### Recycle Form
+
+Got any unused electronics? Use the Recycle Form to submit your items into recycle and reuse!
+![RecycleForm](https://github.com/YakirHasid/AY-ECO/assets/31670770/2ddf7905-4885-4c52-84cb-b46cb0937645)
