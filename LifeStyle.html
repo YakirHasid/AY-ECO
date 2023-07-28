@@ -182,6 +182,23 @@
                     </label>
                 </p> 
 
+                <p>
+                    <label> Toggle Password
+                        <input type="button" name="displayPasswordField" id="passwordField" value="Toggle Password" onclick="togglePassword()">                        
+                    </label>
+                </p> 
+
+                <script>
+                    function togglePassword() {
+                        var x = document.getElementById("passwordField");
+                        if (x.type === "password") {
+                            x.type = "text";
+                        } else {
+                            x.type = "password";
+                        }
+                    }
+                </script>
+
                 <p><fieldset><legend>Self Dropout</legend>
                     <p>
                         &nbsp;&nbsp;
