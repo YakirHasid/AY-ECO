@@ -132,6 +132,9 @@ function initPosts(posts) {
             let updateButton = document.createElement("button");
             updateButton.innerText = "Update"
             updateButton.value = post.Id;
+            updateButton.style.backgroundColor = "lightblue";
+            updateButton.style.margin = "5px";
+            updateButton.style.padding = "2px";
             updateButton.addEventListener("click", function () {
                 let updatedText = this.parentElement.getElementsByTagName("textarea")[0].value;
 
@@ -159,8 +162,40 @@ function initPosts(posts) {
 
             });
 
+            let deleteButton = document.createElement("button");
+            deleteButton.innerText = "Delete"
+            deleteButton.value = post.Id;
+            deleteButton.style.backgroundColor = "red";
+            deleteButton.style.margin = "5px";
+            deleteButton.style.padding = "2px";
+            deleteButton.addEventListener("click", function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'deletePost.php',
+                    data: {
+                        'postId' : post.Id,
+                        'username' : localStorage.getItem('username'),                                              
+                    },
+                    success: function(response) { 
+                        if(response) {
+                            location.reload();
+                        }                     
+                        else {
+                            alert("Delete failed");
+                        }                                      
+                        
+                    },
+                    error: function(error) {
+                        console.log('An error occurred: ' + error);
+                    }            
+                });
+
+            });
+
             postDiv.appendChild(textareaField);
             postDiv.appendChild(updateButton);
+            postDiv.appendChild(deleteButton);
         }
         else {
             postDiv.innerText = post.text;
