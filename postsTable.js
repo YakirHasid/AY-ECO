@@ -88,7 +88,7 @@ function initPosts(posts) {
     createPostsTable();
 
     //get the post table
-    let table = document.getElementById("postsTable");
+    let table = document.getElementById("postsTable");    
 
     posts.forEach(post => {        
         console.log(post);
@@ -123,7 +123,49 @@ function initPosts(posts) {
 
         tdPostNo.innerText = post.Id;
         tdPostedBy.innerText = post.username;
-        postDiv.innerText = post.text;
+      
+        if(isLogged() && post.username == localStorage.getItem('username')) {
+            let textareaField = document.createElement("textarea");
+            textareaField.innerText = post.text;
+            textareaField.style.width = "100%";
+
+            let updateButton = document.createElement("button");
+            updateButton.innerText = "Update"
+            updateButton.value = post.Id;
+            updateButton.addEventListener("click", function () {
+                let updatedText = this.parentElement.getElementsByTagName("textarea")[0].value;
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'updatePost.php',
+                    data: {
+                        'postId' : post.Id,
+                        'username' : localStorage.getItem('username'),                        
+                        'updatedText' : updatedText                        
+                    },
+                    success: function(response) { 
+                        if(response) {
+                            location.reload();
+                        }                     
+                        else {
+                            alert("Update failed");
+                        }                                      
+                        
+                    },
+                    error: function(error) {
+                        console.log('An error occurred: ' + error);
+                    }            
+                });
+
+            });
+
+            postDiv.appendChild(textareaField);
+            postDiv.appendChild(updateButton);
+        }
+        else {
+            postDiv.innerText = post.text;
+        }
+
         tdDate.innerText = post.post_date;
 
         let spanHeart = document.createElement("span");
