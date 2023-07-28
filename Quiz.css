@@ -7,7 +7,7 @@ body{
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 20px;
     transform: translateY(-50%);
 }
@@ -89,7 +89,7 @@ td img {
 
 select {
     background-color:#FDC323;
-    border-color: white;
+    border-color: #edc1cf;
 }
 
 #submitQuiz {     
