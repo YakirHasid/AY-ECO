@@ -29,8 +29,10 @@ function createPostForm() {
         let label = document.createElement("label");
         label.innerText = fieldNamesArr[field];
         
-        let input = document.createElement("input");
-        input.setAttribute("type", "textarea");
+        let input = document.createElement("textarea"); 
+        input.style.width = "800px";
+        input.style.height = "150px";      
+        input.style.resize = "both";
         input.setAttribute("placeholder", "Share your thoughts with AY-ECO community");
         input.setAttribute("name", field);                
         input.pattern = ".{1,}";
