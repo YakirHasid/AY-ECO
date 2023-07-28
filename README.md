@@ -39,5 +39,5 @@ News Scroll with all the latest articles about the climate crisis, for e.g. how 
 
 ### News Of The Day
 
-Stay up to date with the News Of The Day (Remember: We didn't say on which day!)
+Stay up to date with the News Of The Day (*Remember*: We didn't say on which day!)
 ![NewsOfTheDay](https://github.com/YakirHasid/AY-ECO/assets/31670770/ab590a70-43eb-42a9-b9d7-bdd829abf2aa)
