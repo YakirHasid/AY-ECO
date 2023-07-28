@@ -58,3 +58,18 @@ A video that has been handpicked with our latest algorithm! (Math.random!)
 
 Got any unused electronics? Use the Recycle Form to submit your items into recycle and reuse!
 ![RecycleForm](https://github.com/YakirHasid/AY-ECO/assets/31670770/2ddf7905-4885-4c52-84cb-b46cb0937645)
+
+## Events Page
+
+### Take Action, Save The Planet!
+
+![TakeAction](https://github.com/YakirHasid/AY-ECO/assets/31670770/9d551b09-8197-41ab-9df2-e432f35fedbb)
+![SaveThePlanet](https://github.com/YakirHasid/AY-ECO/assets/31670770/4c1fb06c-2800-4f61-8e70-2c2394791079)
+
+### Events and Lectures
+
+Current planed events and lectures!
+![Events](https://github.com/YakirHasid/AY-ECO/assets/31670770/d08608c1-b6f3-4657-84bc-cbf29e2cddb4)
+
+
+
