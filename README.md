@@ -3,6 +3,11 @@ Welcome to AY-ECO Inc. ,
 
 A place where you have all the tools required to change the crisis in your life and of the world!
 
+## Credits
+
+Almog Rabani - Fullstack Development
+Yakir Hasid - Fullstack Development
+
 ## Navigation Bar
 
 Browse the website using the latest designed navigation bar!
@@ -78,4 +83,12 @@ Current planed events and lectures!
 We offer a wide variety of items you can purchase, those items are eco-friendly!
 ![StorePurchase](https://github.com/YakirHasid/AY-ECO/assets/31670770/940c0933-38e9-45dd-b1f7-20ee5223d851)
 
+## Commuinty Feed Page
 
+Join the talk! Post about how you help save the environment, fight the climate change and like other user's posts!
+![CommunityFeed](https://github.com/YakirHasid/AY-ECO/assets/31670770/1e3e38fb-706a-41f5-81cc-433db25663fd)
+
+## Quiz Page
+
+Think you know bio degradation? Test your knowledge in our Quiz!
+![Quiz](https://github.com/YakirHasid/AY-ECO/assets/31670770/893e9d9c-06d8-4e2f-965a-3ad0edb9aaf8)
