@@ -4,6 +4,7 @@ Welcome to AY-ECO Inc. ,
 A place where you have all the tools required to change the crisis in your life and of the world!
 
 ## Navigation Bar
+
 Browse the website using the latest designed navigation bar!
 
 ![NavigationBar](https://github.com/YakirHasid/AY-ECO/assets/31670770/1105fc2d-4a78-4619-bf9f-85eb94f1e76e)
