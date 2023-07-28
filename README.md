@@ -6,6 +6,7 @@ A place where you have all the tools required to change the crisis in your life 
 ## Credits
 
 Almog Rabani - Fullstack Development
+
 Yakir Hasid - Fullstack Development
 
 ## Navigation Bar
