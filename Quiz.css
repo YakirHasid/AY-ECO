@@ -6,17 +6,19 @@ body{
 .left-stickers {
     display: flex;
     flex-direction: column;
+    z-index: -1;
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 20px;
     transform: translateY(-50%);
 }
 
 .right-stickers {
+    z-index: -1;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50%;
+    top: 70%;
     right: 20px;
     transform: translateY(-50%);
 }
