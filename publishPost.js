@@ -132,7 +132,6 @@ $(document).ready(function() {
                 console.log(response);
                 $('#formPost')[0].reset(); // Reset the form fields
 
-                // TODO: clear and load all posts from the database
                 loadPosts();
 
             },

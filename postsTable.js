@@ -63,7 +63,6 @@ function loadPosts() {
     $.ajax({
         type: 'GET',
         url: 'loadPostsScript.php',
-        //data: formData,
         success: function(response) {
             // Handle the response from the server
             posts = JSON.parse(response);             

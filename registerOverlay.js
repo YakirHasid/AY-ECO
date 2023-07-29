@@ -128,7 +128,7 @@ $(document).ready(function() {
                 $('#formRegister')[0].reset(); // Reset the form fields
                 $('#registerContainer').toggleClass("show-modal");
 
-                // You can show a success message or perform other actions here
+               
                 alert("Happy to have you here "+answer["username"]+ " you can login, and enjoy your stay :)");
 
 
@@ -153,22 +153,3 @@ $(document).ready(function(){
 
 
 
-
-/*
-let field1 = document.createElement("div");
-field1.classList.add("form_wrap");
-field1.classList.add("form_grp");
-
-let field2 = document.createElement("div");
-field2.classList.add("form_wrap");
-
-let field3 = document.createElement("div");
-field3.classList.add("form_wrap");
-field3.classList.add("form_grp");
-
-let field4 = document.createElement("div");
-field4.classList.add("form_wrap");
-
-let field5 = document.createElement("div");
-field5.classList.add("form_wrap");
-*/

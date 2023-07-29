@@ -4,8 +4,7 @@
     $password = "kTs6nN8a.Pvhi!X";
     $dbname = "b17_33864062_AY_ECO_Database";
 
-    // Id is handled by automatically by database
-    //$formId = $_POST["Id"];
+    
     $formUsername = $_POST["Username"];
     $formText = $_POST["Text"];
 
