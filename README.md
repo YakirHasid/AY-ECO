@@ -24,7 +24,8 @@ Watch the newly designed logo, now in a GIF format!
 ### Introduction
 
 About Us (AY-ECO obviously!), including a signup to the newsletter!
-![Introduction](https://github.com/YakirHasid/AY-ECO/assets/31670770/c01874c3-64d2-41a1-aa5e-4b3c74e389d0)
+![Introduction_New](https://github.com/YakirHasid/AY-ECO/assets/31670770/7fa5af62-7a4e-4579-84cc-e9c50566b4c3)
+
 
 ### Contact Us
 
